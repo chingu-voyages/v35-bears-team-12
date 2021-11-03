@@ -1,0 +1,60 @@
+html,
+body {
+  min-height: 100vh;
+  min-width: 100vw;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, Didot, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  margin-top: 50px;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.menu-item {
+  width: 200px;
+  perspective: 2000px;
+}
+
+.sub-menu {
+  position: absolute;
+  top: 30px;
+  padding: 15px;
+  background-color: #ccc;
+  border-radius: 6px;
+
+  transform-origin: 50% -30px;
+}
+
+.sub-menu-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform-origin: 0 0;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.sub-menu-container {
+}
+
+.sub-menu-item {
+  margin-bottom: 5px;
+}

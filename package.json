@@ -1,0 +1,87 @@
+{
+  "name": "ChinguBoard",
+  "author": {
+    "name": "Bears-Team-12"
+  },
+  "version": "0.1.0",
+  "description": "Chingu Board, we help developers grow",
+  "private": true,
+  "scripts": {
+    "dev": "next dev app",
+    "build": "next build app",
+    "start": "next start app",
+    "export": "next export app",
+    "lint": "eslint ./app --ext .js --ext .jsx",
+    "lint-fix-all": "eslint --fix",
+    "test": "jest",
+    "test:update": "jest -u",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "prettier": "prettier --write \"**/*.{html,js,jsx,json,md,mdx,yml}\""
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./app/setupTests.js"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{html,js,md,yml}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^1.0.14",
+    "@chakra-ui/react": "^1.6.5",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@fontsource/antic-didone": "^4.5.0",
+    "@fontsource/baloo-bhai-2": "^4.5.0",
+    "@fontsource/iosevka": "^4.5.1",
+    "@fontsource/sora": "^4.2.2",
+    "framer-motion": "^4",
+    "next": "^12.0.2",
+    "next-auth": "^3.29.0",
+    "next-pwa": "^5.4.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hook-form": "^7.12.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.15",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-react": "^7.14.5",
+    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.2.6",
+    "@types/jest": "^26.0.24",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "eslint": "^7.31.0",
+    "eslint-config-next": "^11.0.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jest-dom": "^3.9.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-testing-library": "^4.5.0",
+    "husky": "^6.0.0",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.4",
+    "msw": "^0.33.1",
+    "prettier": "^2.2.1",
+    "react-test-renderer": "^17.0.2"
+  },
+  "msw": {
+    "workerDirectory": "app/public"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": "app",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@sections/*": ["components/sections/*"],
+      "@icons/*": ["components/icons/*"],
+      "@content/*": ["content/*"],
+      "@layouts/*": ["layouts/*"],
+      "@styles/*": ["styles/*"],
+      "@utils/*": ["utils/*"],
+      "@hooks/*": ["hooks/*"],
+      "@context/*": ["context/*"],
+      "@lib/*": ["lib/*"]
+    }
+  },
+  "exclude": ["node_modules/", "app/.next"]
+}

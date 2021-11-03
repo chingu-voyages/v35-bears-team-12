@@ -1,0 +1,10 @@
+// Comments are allowed as opposed to regular JSON files
+{
+  "presets": [
+    // Use the preset-env babel plugins
+    "next/babel"
+  ]
+  // "plugins": [
+  //   // Besides the presets, use this plugin
+  // ]
+}
