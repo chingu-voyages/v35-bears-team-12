@@ -4,6 +4,8 @@
 
 Connecting students and those early in their career with hands on experience of working in a team.
 
+Test change
+
 Live at ( ADD DEPLOY LATER )
 
 `.env file must be located in app directory, else NextJS won't be able to find it during the build time`
