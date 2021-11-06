@@ -4,7 +4,30 @@
 
 Connecting students and those early in their career with hands on experience of working in a team.
 
-Live at ( ADD DEPLOY LATER )
+We going to use The Git Flow is the most known workflow on this list.
+It was created by Vincent Driessen in 2010 and it is based in two main branches with infinite lifetime:
+
+`main (master)` — this branch contains production code. All development code is merged into master in sometime.
+
+`develop` — this branch contains pre-production code. When the features are finished then they are merged into develop.
+
+During the development cycle, a variety of supporting branches are used:
+If you ever do merges, make sure you do not merge anything into main except develop and release branch.
+
+`feature/*` — feature branches are used to develop new features for the upcoming releases.
+May branch off from develop and must merge into develop.
+
+`bugfix/*` — hotfix branches are necessary to act immediately upon an undesired status of master.
+May branch off from master and must merge into master and develop.
+
+`hotfix/*` — hotfix branches are necessary to act immediately upon an undesired status of master.
+May branch off from master and must merge into master and develop.
+
+`release/*` — release branches support preparation of a new production release.
+They allow many minor bug to be fixed and preparation of meta-data for a release.
+May branch off from develop and must merge into master and develop.
+
+#### Live at ( ADD DEPLOY LATER )
 
 `.env file must be located in app directory, else NextJS won't be able to find it during the build time`
 
