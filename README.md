@@ -2,6 +2,8 @@
 
 ## Overview
 
+Chingu Posting Board will be a posting board for Chingu projects. Users will be able to login or signup, share a finished project from their Chingu voyage, and view past projects from completed Chingu voyages. Additionally we will build a section where non-profits/charities can view completed projects as well as profiles of the developers who developed those projects. This will allow these organizations to find developer talent. We will use Next.js primarily.
+
 Connecting students and those early in their career with hands on experience of working in a team.
 
 We going to use The Git Flow is the most known workflow on this list.
