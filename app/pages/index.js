@@ -10,6 +10,8 @@ import {
   VStack,
   Text,
   Spinner,
+  SimpleGrid,
+  Center,
 } from "@chakra-ui/react";
 import { useColorModeSwitcher } from "../hooks/useColorModeSwitcher";
 import { useUserStore } from "../context/useUserStore";
@@ -98,16 +100,29 @@ const ProjectCard = ({ project }) => {
         w={{ base: "21em", lg: "57.5rem" }}
       >
         <Heading textTransform="capitalize" as="h4" variant="h4" mb="0.5rem">
-          {appName} <br />
+          <SimpleGrid columns={2}>
+            {appName} <br />
+            <Text variant="body" mb="2rem">
+              <Link href={github}>Github</Link> -{" "}
+              <Link href={discordLink}>Discord</Link>
+            </Text>
+            <Text></Text>
+          </SimpleGrid>
+        </Heading>
+        <SimpleGrid columns={2} spacingX="200x">
           {teamName} <br />
           {positionTitle} <br />
-        </Heading>
-        <Text variant="body" mb="2rem">
-          {catchPhrase}
-        </Text>
-        <Text variant="body" mb="2rem">
-          {description}
-        </Text>
+          <Text variant="body" mb="2rem">
+            <strong>Description:</strong> {description} <br />
+            <strong> Catch Phrase:</strong> {catchPhrase} <br />
+            <strong>Team Count:</strong> {teamCount}
+          </Text>
+        </SimpleGrid>
+        <Center>
+          <Text variant="body" mb="2rem">
+            <img src={appLogo} />
+          </Text>
+        </Center>
       </Box>
     </VStack>
   );
