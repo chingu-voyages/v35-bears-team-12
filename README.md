@@ -33,6 +33,61 @@ May branch off from develop and must merge into master and develop.
 
 ### 2. User Stories
 
+This app is for two types of users: project managers and developers.
+
+##### Landing Page
+* as a user,
+* I want to 
+* so
+
+##### Create Account Page
+* as a new user,
+* I want to 
+* so
+
+##### Log In Page
+* as a returning user,
+* I want to 
+* so
+
+##### Home Page
+* as a project manager,
+* I want to 
+* so
+
+* as a developer,
+* I want to 
+* so
+
+##### Create a Project Page
+* as a project manager,
+* I want to 
+* so
+
+##### Discover Gallery Page
+* as a project manager,
+* I want to 
+* so
+
+* as a developer,
+* I want to 
+* so
+
+##### Add to Gallery Page
+* as a developer,
+* I want to 
+* so
+
+##### Settings Page
+* as a user,
+* I want to 
+* so
+
+##### Profile Page
+* as a user,
+* I want to 
+* so
+
 ### 3. Functionality
 
 ### 4. Technology
