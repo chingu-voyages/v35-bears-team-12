@@ -35,60 +35,60 @@ May branch off from develop and must merge into master and develop.
 
 This app is for two types of users: project managers and developers.
 
-##### Landing Page
-* as a user,
-* I want to 
-* so
-
 ##### Create Account Page
 * as a new user,
-* I want to 
-* so
+* I want to create an account,
+* so I can access the app
 
 ##### Log In Page
 * as a returning user,
-* I want to 
-* so
+* I want to log into my account
+* so I can access the app
 
 ##### Home Page
 * as a project manager,
-* I want to post details about a project I (or my organization) want to build,
-* so developers can decide if they want to apply to work on it
+* I want to post information about (and a link to apply for) a project I (or my organization) want to build,
+* so I can attract the developers I need
 
 ##### Home Page
 * as a developer,
-* I want to view details about projects that people (or organizations) want to build,
+* I want to view information about projects that people (or organizations) want to build,
 * so I can decide if I want to apply to work on any
 
 ##### Create a Project Page
 * as a project manager,
-* I want to enter details about the project's vision, and the experience/stack needed to work on it,
-* so I can attract the developers I need
+* I want to enter details about the project's vision, and the experience/stack needed for developers to work on it,
+* so I can post the project to the Home Page
 
 ##### Discover Gallery Page
-* as a project manager,
-* I want to view projects created by Chingus, and follow links to explore them further 
-* so I can get inspiration for my (or my oganization's) project, and/or find promising developers
+* as a project manager or a developer,
+* I want to view projects created by Chingus, and follow links to explore them further, 
+* so I can build community, get inspiration for my (or my oganization's) project(s), and/or find promising developers
 
 ##### Discover Gallery Page
 * as a developer,
-* I want to 
-* so
+* I want to post information about my completed voyage projects,
+* so I can build community and/or showcase my abilities to project managers
 
-##### Add to Gallery Page
+##### Add Project to Gallery Page
 * as a developer,
-* I want to 
-* so
+* I want to enter details about my team's completed voyage project and our team members,
+* so I can post the project to the Gallery
 
 ##### Settings Page
 * as a user,
-* I want to 
-* so
+* I want to edit the settings for my profile, notifications, _________
+* so _____
+
+##### Partners Page
+* as a _____,
+* I want to _______
+* so ___________
 
 ##### Profile Page
 * as a user,
-* I want to 
-* so
+* I want to view the name of a fellow user, and links to their portfolio, LinkedIn and/or GitHub,
+* so I can decide whether I want to work with them
 
 ### 3. Functionality
 
