@@ -1,10 +1,8 @@
 # Chingu Board
+Chingu Board will be a posting board for Chingu projects. Users will be able to login or signup, share a finished project from their Chingu voyage, and view past projects from completed Chingu voyages. Additionally we will build a section where non-profits/charities can view completed projects as well as profiles of the developers who developed those projects. This will allow these organizations to find developer talent.
+Connecting students and those early in their career with hands on experience of working in a team.
 
 ## Overview
-
-Chingu Posting Board will be a posting board for Chingu projects. Users will be able to login or signup, share a finished project from their Chingu voyage, and view past projects from completed Chingu voyages. Additionally we will build a section where non-profits/charities can view completed projects as well as profiles of the developers who developed those projects. This will allow these organizations to find developer talent. We will use Next.js primarily.
-
-Connecting students and those early in their career with hands on experience of working in a team.
 
 We going to use The Git Flow is the most known workflow on this list.
 It was created by Vincent Driessen in 2010 and it is based in two main branches with infinite lifetime:
@@ -29,27 +27,41 @@ May branch off from master and must merge into master and develop.
 They allow many minor bug to be fixed and preparation of meta-data for a release.
 May branch off from develop and must merge into master and develop.
 
-#### Live at ( ADD DEPLOY LATER )
+### 1. Live at ( ADD DEPLOY LATER )
 
 `.env file must be located in app directory, else NextJS won't be able to find it during the build time`
 
-## Updates
+### 2. User Stories
+
+### 3. Functionality
+
+### 4. Technology
+
+### 5. Wireframes
+
+### 6. Front-end Structure - Component Map
+
+### 7. Back-end Structure
+
+### 8. API Documentation
+
+### 9. Screenshots
+
+### 10. Development Roadmap
+
+#### Updates
 
 `Wed. Nov 3, 2021`
 
 - Initial Set Up
 
-## Features
-
-- Add Features Here
-
-## Running the project locally
+### 11. Running the project locally
 
 - Clone the project locally
 
 From the repo:
 
-### `git clone`
+`git clone`
 
 - Installs dependencies required for the app to run in development mode.
 
@@ -95,7 +107,8 @@ yarn lint
 
 - Check all other available scripts in package.json
 
-## Direct Dependencies
+
+#### Direct Dependencies
 
 - [React](https://reactjs.org/)
 - [React-DOM](https://www.npmjs.com/package/react-dom)
@@ -108,12 +121,12 @@ yarn lint
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 - [Mock Service Worker](https://mswjs.io/docs/)
 
-## Add Support For ?
+#### Add Support For ?
 
 - [Checkly](https://www.checklyhq.com/)
 - [Storybook](https://storybook.js.org/)
 
-## Learn More
+#### Learn More
 
 If you're interested in contributing, or just interested in the main tools I'm using, you can check them out via the links below.
 
