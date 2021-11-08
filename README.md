@@ -45,6 +45,11 @@ This app is for two types of users: project managers and developers.
 * I want to log into my account
 * so I can access the app
 
+##### About Page
+* as a user,
+* I want to view key information about what the "Chingu Boards" app is and how it works,
+* So I can figure out how to use the app
+
 ##### Home Page
 * as a project manager,
 * I want to post information about (and a link to apply for) a project I (or my organization) want to build,
@@ -79,11 +84,6 @@ This app is for two types of users: project managers and developers.
 * as a user,
 * I want to edit the settings for my profile, notifications, _________
 * so _____
-
-##### Partners Page
-* as a _____,
-* I want to _______
-* so ___________
 
 ##### Profile Page
 * as a user,
