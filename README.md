@@ -82,8 +82,8 @@ This app is for two types of users: project managers and developers.
 
 ##### Settings Page
 * as a user,
-* I want to edit the settings for my profile, notifications, _________
-* so _____
+* I want to edit the settings for my profile, 
+* so 
 
 ##### Profile Page
 * as a user,
