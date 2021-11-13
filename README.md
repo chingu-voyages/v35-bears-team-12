@@ -94,11 +94,65 @@ This app is for two types of users: project managers and developers.
 
 ### 4. Technology
 
+* Front-End: HTML5, CSS3, JavaScript, React, Chakra
+* Back-End: Next.js, Prisma, PostgreSQL
+* Development Environment: Heroku
+
+#### Direct Dependencies
+
+- [React](https://reactjs.org/)
+- [React-DOM](https://www.npmjs.com/package/react-dom)
+- [NextAuth](https://next-auth.js.org/getting-started/client#signin)
+- [Chakra UI](https://chakra-ui.com/)
+- [Prettier](https://prettier.io/)
+- [ESLint](https://eslint.org/)
+- [Jest](https://jestjs.io/)
+- [Framer Motion](https://www.framer.com/docs/animation/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [Mock Service Worker](https://mswjs.io/docs/)
+
 ### 5. Wireframes
 
 ### 6. Front-end Structure - Component Map
 
 ### 7. Back-end Structure
+* Users (database table)
+    * id (auto-generated)
+    * username (at least 3 characters, validated for uniqueness)
+    * password (at least 8 chars, at least one alpha and one number validation)
+    * name (full name, at least 3 chars)
+    * email (VARCHAR(255), validated for email)
+    * linkedin_link (VARCHAR(255), validated for url)
+    * github_link (VARCHAR(255), validated for url)
+    * portfolio_link(VARCHAR(255), validated for url)
+* Posts (database table)
+    * post_id (auto-generated)
+    * user_id (foreign key to users table)
+    * date_posted (TIMESTAMPTZ NOT NULL DEFAULT now)
+    * location 
+        <!-- (enum incl. remote, or maybe connect to geo api of some kind) -->
+    * title (VARCHAR NOT NULL)
+    * description (VARCHAR NOT NULL)
+        <!-- or figure out a different data type allowing for more characters/formatting -->
+    * developer_qualifications ()
+    * apply_url (VARCHAR(255), validated for url)
+* Gallery (database table)
+    * exhibit_id (auto-generated)
+    * user_id (foreign key to users table)
+    * date_posted (TIMESTAMPTZ NOT NULL DEFAULT now)
+    * voyage_number (number)
+    * team_name (VARCHAR)
+    * title (VARCHAR NOT NULL)
+    * description (VARCHAR NOT NULL)
+        <!-- or figure out a different data type allowing for more characters/formatting -->
+    * thumbnail 
+        <!-- (need to figure out the best way to have users upload images accessed by database) -->
+    * deployed_url (VARCHAR(255), validated for url)
+    * github_repo (VARCHAR(255), validated for url)
+    * contributor_a (foreign key to users table)
+    * contributor_b (foreign key to users table)
+    * contributor_c (foreign key to users table)
+    * contributor_d (foreign key to users table)
 
 ### 8. API Documentation
 
@@ -164,19 +218,6 @@ yarn lint
 
 - Check all other available scripts in package.json
 
-
-#### Direct Dependencies
-
-- [React](https://reactjs.org/)
-- [React-DOM](https://www.npmjs.com/package/react-dom)
-- [NextAuth](https://next-auth.js.org/getting-started/client#signin)
-- [Chakra UI](https://chakra-ui.com/)
-- [Prettier](https://prettier.io/)
-- [ESLint](https://eslint.org/)
-- [Jest](https://jestjs.io/)
-- [Framer Motion](https://www.framer.com/docs/animation/)
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
-- [Mock Service Worker](https://mswjs.io/docs/)
 
 #### Add Support For ?
 
