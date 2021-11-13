@@ -1,24 +1,18 @@
+/**
+ *  This hook is responsible for change in colors when
+ *  you switch between themes.
+ */
 import { useColorModeValue } from "@chakra-ui/react";
-
-/*
-  I don't know why but I can't use the default colors,
-  to properly switch between colors in 3 d animation
-  while using useColorModeValue(), minor inconvinience
-*/
-const light = "#fcfcfc";
-const dark = "#171010";
 
 function useColorModeSwitcher() {
   const colorLight = useColorModeValue("default.light", "default.dark");
-
   const colorDark = useColorModeValue("default.dark", "default.light");
 
-  // const themed = useColorModeValue('primary.500', 'secondary.300');
-  const themed = useColorModeValue("roseRed.900", "turqouise.900");
-  const secondaryThemed = useColorModeValue("roseRed.700", "turqouise.700");
+  const themed = useColorModeValue("primary.700", "secondary.500");
+  const secondaryThemed = useColorModeValue("secondary.700", "secondary.500");
   const authThemed = useColorModeValue("primary.500", "primary.200");
 
-  const colorGrey = useColorModeValue("neutral.200", "neutral.600");
+  const colorGrey = useColorModeValue("neutral.100", "neutral.200");
 
   const successColor = useColorModeValue(
     "accent.successDark",
@@ -26,8 +20,6 @@ function useColorModeSwitcher() {
   );
 
   const errorColor = useColorModeValue("accent.errorDark", "accent.errorLight");
-
-  const threeAnimColor = useColorModeValue(light, dark);
 
   return {
     colorLight,
@@ -38,7 +30,6 @@ function useColorModeSwitcher() {
     authThemed,
     successColor,
     errorColor,
-    threeAnimColor,
   };
 }
 
