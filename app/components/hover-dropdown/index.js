@@ -39,6 +39,7 @@ function HoverDropDown({ children, href, title, ...props }) {
   return (
     <MotionBox
       align="start"
+      fontSize={20}
       borderBottom={{ base: "1px solid", lg: "none" }}
       borderColor={colorGrey}
       onHoverEnd={toggleHoverMenu}

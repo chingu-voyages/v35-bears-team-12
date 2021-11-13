@@ -50,7 +50,7 @@ function SearchBar() {
       <InputGroup size="md" w={{ base: "20rem", lg: "30rem" }}>
         <Input
           borderRadius="none"
-          placeholder="search"
+          placeholder="Search"
           type="text"
           {...register("search", {
             minLength: 1,
@@ -72,7 +72,6 @@ function SearchBar() {
             type="submit"
             isLoading={isSubmitting}
             icon={<SearchIcon />}
-            // variant="ghost"
           />
         </InputRightElement>
       </InputGroup>

@@ -6,9 +6,8 @@
  *  3) Fix routes
  */
 import React from "react";
-import { Avatar } from "../avatar";
 import { SearchBar } from "../search-bar";
-import { Box, Flex, HStack, VStack } from "@chakra-ui/layout";
+import { Box, Flex, HStack, VStack, Center, Heading } from "@chakra-ui/layout";
 import { Button, Divider } from "@chakra-ui/react";
 import { MoonIcon as IoMoon } from "../icons/moon-icon";
 import { SunIcon as IoSunnyOutline } from "../icons/sun-icon";
@@ -18,17 +17,13 @@ import { useColorModeSwitcher } from "../../hooks/useColorModeSwitcher";
 import { useColorMode } from "@chakra-ui/color-mode";
 import { VerticalLink } from "../styled-link/vertical-link";
 import { StyledLink } from "../styled-link/styled-link";
-import { CodeIcon } from "../icons/code-icon";
-// import { useRouter } from "next/router";
-// import { signIn, signOut, useSession } from "next-auth/client";
-// test
+
 import { useUserStore } from "../../context/useUserStore";
 
 // test hover menu
 import { HoverDropDown } from "../hover-dropdown";
 
 function Navbar({ isOpen, toggleIsOpen }) {
-  // const router = useRouter();
   const context = useUserStore();
 
   const { colorMode, toggleColorMode } = useColorMode();
@@ -37,18 +32,16 @@ function Navbar({ isOpen, toggleIsOpen }) {
   const logoutHandler = (event) => {
     event.preventDefault();
     context.signOut();
-    // router.push("/");
   };
   const loginHandler = (event) => {
     event.preventDefault();
     context.signIn();
   };
 
-  // eslint-disable-next-line no-console
   return (
     <Box
       as="nav"
-      p="0.5rem"
+      p="0.2rem"
       mb={isOpen ? { base: "1rem" } : { base: "2.5rem", lg: "3rem" }}
     >
       <Flex
@@ -57,32 +50,19 @@ function Navbar({ isOpen, toggleIsOpen }) {
         p="4"
       >
         <MenuButton toggleIsOpen={toggleIsOpen} />
+        <Heading size="lg" fontSize="40px">
+          Chingu
+        </Heading>
 
-        {context.session ? (
-          <Avatar
-            name={context.session.user.name}
-            src={context.session.user.image}
-          />
-        ) : (
-          <div>Logo</div>
-          /* <CodeIcon fill={colorDark} /> */
-        )}
-        <SearchBar />
         <HStack spacing={{ base: 0, md: 8 }}>
           <Flex align="center" as="ul" display={{ base: "none", lg: "flex" }}>
             {/* Discover Our Product Routes */}
             <HoverDropDown href="/discover" title="Discover" variant="noStyle">
-              <VerticalLink href="/projects" variant="noStyle">
-                Projects
-              </VerticalLink>
               <VerticalLink href="/teams" variant="noStyle">
                 Teams
               </VerticalLink>
               <VerticalLink href="/about" variant="noStyle">
                 About
-              </VerticalLink>
-              <VerticalLink href="/careers" variant="noStyle">
-                Careers
               </VerticalLink>
             </HoverDropDown>
             {/* Resources Routes */}
@@ -91,18 +71,6 @@ function Navbar({ isOpen, toggleIsOpen }) {
               title="Resources"
               variant="noStyle"
             >
-              <VerticalLink href="init/guides" variant="noStyle">
-                Guides
-              </VerticalLink>
-              <VerticalLink href="init/community" variant="noStyle">
-                Community
-              </VerticalLink>
-              <VerticalLink href="init/newsletter" variant="noStyle">
-                Newsletter
-              </VerticalLink>
-              <VerticalLink href="init/uses" variant="noStyle">
-                Uses
-              </VerticalLink>
               <VerticalLink href="/contact" variant="noStyle">
                 Contact Us
               </VerticalLink>
@@ -154,10 +122,13 @@ function Navbar({ isOpen, toggleIsOpen }) {
       </Flex>
       {/* TODO: Improve Styles */}
       {context.session && (
-        <HStack spacing={{ base: "50px", lg: "90px" }} mb="0.1rem">
+        <HStack spacing={{ base: "50px", lg: "90px" }} mb="0.1rem" ml="2rem">
           <SubMenu />
         </HStack>
       )}
+      <Center p={2}>
+        <SearchBar />
+      </Center>
       <Divider bg="neutral.700" />
     </Box>
   );
@@ -173,22 +144,17 @@ function MobileNavMenu() {
         <VerticalLink href="/about" spacing={4} variant="large">
           About
         </VerticalLink>
+        <VerticalLink href="/teams" spacing={4} variant="large">
+          Teams
+        </VerticalLink>
         <VerticalLink href="/projects" spacing={4} variant="large">
           Projects
         </VerticalLink>
-        <VerticalLink href="/blog" spacing={4} variant="large">
-          Blog
+        <VerticalLink href="/contact" spacing={4} variant="large">
+          Contact us
         </VerticalLink>
-      </VStack>
-      <VStack as="ul" my={8} p={4} spacing={8} w="100%">
-        <VerticalLink href="/newsletter" variant="large">
-          Newsletter
-        </VerticalLink>
-        <VerticalLink href="/community" variant="large">
-          Community
-        </VerticalLink>
-        <VerticalLink href="/uses" variant="large">
-          Uses
+        <VerticalLink href="/support" spacing={4} variant="large">
+          Support
         </VerticalLink>
       </VStack>
     </VStack>
@@ -198,19 +164,16 @@ function MobileNavMenu() {
 function SubMenu() {
   return (
     <>
-      <HStack spacing={{ base: 0, md: 8 }}>
+      <HStack spacing={{ base: 0, md: 8 }} fontSize={18}>
         <Flex align="center" display={{ base: "none", lg: "flex" }} as="ul">
           {/*!!!!!! All these routes will be dynamic !!!!!!*/}
-          <StyledLink variant="noStyle" href="/:user/projects">
-            Projects
-          </StyledLink>
-          <StyledLink variant="noStyle" href="/:user/teams">
-            Teams
-          </StyledLink>
           <StyledLink variant="noStyle" href="/:user/activity">
             Activity
           </StyledLink>
-          <StyledLink variant="noStyle" href="/:user/settings">
+          <StyledLink variant="noStyle" href="/:user/profile">
+            Profile{" "}
+          </StyledLink>
+          <StyledLink variant="noStyle" href="/settings">
             Settings
           </StyledLink>
         </Flex>
