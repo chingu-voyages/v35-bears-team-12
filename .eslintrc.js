@@ -4,6 +4,7 @@ module.exports = {
   extends: [
     "next",
     "next/babel",
+    'plugin:@next/next/recommended',
     "eslint:recommended",
     "plugin:react/all",
     "plugin:import/errors",
@@ -37,6 +38,9 @@ module.exports = {
     react: {
       version: "detect",
     },
+    "next": {
+      "rootDir": "./app"
+    },
     "import/resolver": {
       alias: [
         ["@/components", "./app/components"],
@@ -50,12 +54,12 @@ module.exports = {
       // },
     },
   },
-  parserOptions: {
+  // parserOptions: {
     // ecmaVersion: 2018,
-    sourceType: "module",
-    ecmaFeatures: {
-      jsx: true,
-    },
-  },
+  //   sourceType: "module",
+  //   ecmaFeatures: {
+  //     jsx: true,
+  //   },
+  // },
   ignorePatterns: ["node_modules/", ".next/", "./package-lock.json"],
 };
