@@ -1,0 +1,139 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Commands to know:
+// `npx prisma generate` - update TypeScript definitions based on this schema
+// `npx prisma db push` - push the schema changes to the database
+// `npx prisma db seed` - seed the database with some data
+// `npx prisma studio` - open the Studio, which allows you to edit the schema.
+// `npx prisma migrate reset` - reset the migrations to the last version. This will reset the DB and run the seed script
+// `npx prisma migrate dev --name <descriptive-name>` - generate a migration file for any changes you make to the schema (this will be committed).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+}
+
+// maybe use Team Role enum later
+enum TeamRole {
+  OWNER
+  MEMBER
+}
+
+// blue = tier3 project completed, yellow = 2, green = none
+enum VoyageStatus {
+  TIER1
+  TIER2
+  TIER3
+}
+
+enum ProjectStatus {
+  COMPLETED
+  ONGOING
+  // looking for members
+  PENDING
+}
+
+model User {
+  id              String       @id @default(uuid())
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  // general data
+  email           String       @unique(map: "User.email_unique")
+  username        String?
+  github          String?
+  discordId       String?
+  isEmailVerified Boolean
+  avatarUrl       String?
+  settings        Json?
+  // misc enums for a user
+  role            Role         @default(MEMBER)
+  voyageStatus    VoyageStatus @default(TIER1)
+
+  // teams
+  creatorOf Team[] @relation("Creator")
+  memberOf  Team[] @relation("Member")
+
+  // user sessions
+  // sessions     Session[]
+  // user posts ? if we gonna add this functionality
+  // projectPost  ProjectPost[]
+  // postReads    PostRead[]
+}
+
+model Team {
+  id             String    @id @default(uuid())
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  // general data
+  teamName       String    @unique(map: "Team.teamName_unique")
+  description    String
+  githubLink     String?
+  avatarUrl      String?
+  isChinguVoyage Boolean   @default(false)
+  // realtions
+  // one to one creator
+  creator        User      @relation("Creator", fields: [creatorId], references: [id])
+  creatorId      String
+  // which projects are in this team
+  projects       Project[] @relation("TeamCreator")
+  // different memebers of the team, one to many
+  members        User[]    @relation("Member", references: [id])
+  // memberId     String
+}
+
+model Project {
+  id             String    @id @default(uuid())
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  // general data
+  projectName    String?   @unique(map: "Projects.projectName_unique")
+  catchPhrase    String?
+  description    String?
+  startDate      DateTime?
+  // document json data, to make things a bit less complex in terms of tables?
+  positionTitles Json?
+  keywords       Json?
+  // won't be a super bad idea to make it a string since that's user input
+  timeZone       String?
+  githubLink     String?
+  discordId      String?
+  isChinguVoyage Boolean   @default(false)
+  // relations
+  // one to one creator
+  team           Team      @relation("TeamCreator", fields: [teamId], references: [id])
+  teamId         String
+}
+
+// model Session {
+//   id             String   @id @default(uuid())
+//   createdAt      DateTime @default(now())
+//   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   userId         String
+//   expirationDate DateTime
+// }
+
+// Experiments Begin Here
+// model ProjectPost {
+//   id String @id @default(cuid())
+//   creator User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   userId String?
+// }
+
+// model PostRead {
+//   id        String   @id @default(uuid())
+//   createdAt DateTime @default(now())
+//   user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   userId    String?
+//   clientId  String?
+//   postSlug  String
+// }

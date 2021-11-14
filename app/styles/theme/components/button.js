@@ -79,11 +79,11 @@ export const Button = {
       fontWeight: "md",
       textTransform: "none",
       borderRadius: "xl",
-      // bg: props.colorMode === "light" ? "primary.500" : "secondary.300",
-      // color: props.colorMode === "light" ? "default.light" : "default.dark",
       _hover: {
-        color: props.colorMode === "light" ? "turqouise.800" : "roseRed.900",
-        // color: props.colorMode === "light" ? "seafoamGreen.600" : "roseRed.900",
+        color:
+          props.colorMode === "light"
+            ? "complimentary.500"
+            : "complimentary.500",
       },
       _active: {
         bg: "default.dark",
