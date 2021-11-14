@@ -10,7 +10,7 @@
     "dev": "next dev app",
     "build": "next build app",
     "start": "next start app",
-    "export": "next export",
+    "export": "next export app",
     "next-lint": "next lint --dir app",
     "lint": "eslint ./app --ext .js --ext .jsx",
     "lint-fix-all": "eslint --fix",
