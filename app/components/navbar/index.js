@@ -1,10 +1,3 @@
-/* eslint-disable react/no-multi-comp */
-/**
- * TODO:
- *  1) Refactor into smaller components
- *  2) Authentication Display Logic
- *  3) Fix routes
- */
 import React from "react";
 import { SearchBar } from "../search-bar";
 import { Box, Flex, HStack, VStack, Center, Heading } from "@chakra-ui/layout";
@@ -17,7 +10,6 @@ import { useColorModeSwitcher } from "../../hooks/useColorModeSwitcher";
 import { useColorMode } from "@chakra-ui/color-mode";
 import { VerticalLink } from "../styled-link/vertical-link";
 import { StyledLink } from "../styled-link/styled-link";
-
 import { useUserStore } from "../../context/useUserStore";
 
 // test hover menu
@@ -46,12 +38,12 @@ function Navbar({ isOpen, toggleIsOpen }) {
     >
       <Flex
         justify="space-between"
-        mb={isOpen ? { base: "1rem" } : { base: "4.5rem", lg: "3rem" }}
+        mb={isOpen ? { base: "1rem" } : { base: "4.5rem", lg: ".3rem" }}
         p="4"
       >
         <MenuButton toggleIsOpen={toggleIsOpen} />
-        <Heading size="lg" fontSize="40px">
-          Chingu
+        <Heading fontSize={25}>
+          <img src="../image/chingu-logo-small.png" alt="Chingu Logo" />
         </Heading>
 
         <HStack spacing={{ base: 0, md: 8 }}>
@@ -81,24 +73,23 @@ function Navbar({ isOpen, toggleIsOpen }) {
             {/* Display Log In / Log Out based on authentication */}
             {context.session ? (
               <Button
-                // href="/"
-                // eslint-disable-next-line react/jsx-no-bind
                 onClick={logoutHandler}
                 type="auth"
                 variant="authThemed"
                 w="100%"
+                fontSize={18}
               >
-                Log Out
+                +Log Out+
               </Button>
             ) : (
               <Button
-                // href="auth/login"
                 type="auth"
                 variant="authThemed"
                 w="100%"
                 onClick={loginHandler}
+                fontSize={18}
               >
-                Log In
+                +Log In+
               </Button>
             )}
           </Flex>
@@ -164,14 +155,13 @@ function MobileNavMenu() {
 function SubMenu() {
   return (
     <>
-      <HStack spacing={{ base: 0, md: 8 }} fontSize={18}>
+      <HStack spacing={{ base: 0, md: 8 }} fontSize={22}>
         <Flex align="center" display={{ base: "none", lg: "flex" }} as="ul">
-          {/*!!!!!! All these routes will be dynamic !!!!!!*/}
           <StyledLink variant="noStyle" href="/:user/activity">
             Activity
           </StyledLink>
           <StyledLink variant="noStyle" href="/:user/profile">
-            Profile{" "}
+            Profile
           </StyledLink>
           <StyledLink variant="noStyle" href="/settings">
             Settings
