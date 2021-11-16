@@ -11,6 +11,9 @@ import { useColorMode } from "@chakra-ui/color-mode";
 import { VerticalLink } from "../styled-link/vertical-link";
 import { StyledLink } from "../styled-link/styled-link";
 import { useUserStore } from "../../context/useUserStore";
+import chinguLogo from "../image/chingu-logo-small.png";
+import menuIcon from "../image/Vector.png";
+import Image from "next/image";
 
 // test hover menu
 import { HoverDropDown } from "../hover-dropdown";
@@ -33,22 +36,25 @@ function Navbar({ isOpen, toggleIsOpen }) {
   return (
     <Box
       as="nav"
-      p="0.2rem"
-      mb={isOpen ? { base: "1rem" } : { base: "2.5rem", lg: "3rem" }}
+      p="0.4rem"
+      mb={isOpen ? { base: "1rem" } : { base: "2.5rem", lg: ".3rem" }}
     >
       <Flex
         justify="space-between"
-        mb={isOpen ? { base: "1rem" } : { base: "4.5rem", lg: ".3rem" }}
+        mb={isOpen ? { base: "1rem" } : { base: "2.5rem", lg: ".3rem" }}
         p="4"
       >
-        <MenuButton toggleIsOpen={toggleIsOpen} />
-        <Heading fontSize={25}>
-          <img src="../image/chingu-logo-small.png" alt="Chingu Logo" />
+        <Heading>
+          <Image
+            src={chinguLogo}
+            alt="Chingu Logo"
+            width="175px"
+            height="59.35px"
+          />
         </Heading>
 
         <HStack spacing={{ base: 0, md: 8 }}>
           <Flex align="center" as="ul" display={{ base: "none", lg: "flex" }}>
-            {/* Discover Our Product Routes */}
             <HoverDropDown href="/discover" title="Discover" variant="noStyle">
               <VerticalLink href="/teams" variant="noStyle">
                 Teams
@@ -93,25 +99,11 @@ function Navbar({ isOpen, toggleIsOpen }) {
               </Button>
             )}
           </Flex>
-          <IconButton
-            aria-label={
-              colorMode === "light" ? "Toggle dark mode" : "Toggle light Mode"
-            }
-            borderRadius="sm"
-            icon={
-              colorMode === "light" ? (
-                <IoMoon size="1.25rem" />
-              ) : (
-                <IoSunnyOutline size="1.25rem" />
-              )
-            }
-            id="toggleTheme"
-            onClick={toggleColorMode}
-            variant="icon"
-          />
+          <HStack display={{ lg: "none" }}>
+            <Image src={menuIcon} alt="Menu" width="39px" height="26px" />
+          </HStack>
         </HStack>
       </Flex>
-      {/* TODO: Improve Styles */}
       {context.session && (
         <HStack spacing={{ base: "50px", lg: "90px" }} mb="0.1rem" ml="2rem">
           <SubMenu />
@@ -119,6 +111,18 @@ function Navbar({ isOpen, toggleIsOpen }) {
       )}
       <Center p={2}>
         <SearchBar />
+        <Button
+          type="auth"
+          m={2}
+          p={4}
+          variant="solid"
+          colorScheme="green"
+          w="5rem"
+          onClick={loginHandler}
+          fontSize={15}
+        >
+          + Labels
+        </Button>
       </Center>
       <Divider bg="neutral.700" />
     </Box>
@@ -156,7 +160,7 @@ function SubMenu() {
   return (
     <>
       <HStack spacing={{ base: 0, md: 8 }} fontSize={22}>
-        <Flex align="center" display={{ base: "none", lg: "flex" }} as="ul">
+        <Flex align="center" display={{ base: "flex", lg: "flex" }} as="ul">
           <StyledLink variant="noStyle" href="/:user/activity">
             Activity
           </StyledLink>
@@ -190,48 +194,7 @@ function MenuButton({ toggleIsOpen, ...props }) {
       onClick={handleClick}
       variant="ghost"
       w="48px"
-      icon={<MenuIcon clicked={clicked} />}
-    />
-  );
-}
-
-function MenuIcon({ clicked }) {
-  const { colorDark } = useColorModeSwitcher();
-  return (
-    <Box
-      h="100%"
-      position="relative"
-      w="100%"
-      // transform={"rotate(0deg)"}
-      // transition={"all 0.5s ease-in-out"}
-    >
-      <Line
-        bg={colorDark}
-        left={clicked ? "8px" : "4px"}
-        top={clicked ? "22px" : "16px"}
-        transform={clicked ? "rotate(45deg)" : "none"}
-        width={clicked ? "32px" : "40px"}
-      />
-      <Line
-        bg={colorDark}
-        bottom={clicked ? "22px" : "16px"}
-        left={clicked ? "8px" : "4px"}
-        transform={clicked ? "rotate(-45deg)" : "none"}
-        width={clicked ? "32px" : "40px"}
-      />
-    </Box>
-  );
-}
-
-function Line({ ...props }) {
-  return (
-    <Box
-      {...props}
-      as="span"
-      borderRadius="13px"
-      height="2px"
-      position="absolute"
-      transition="all 0.3s ease-in-out"
+      icon
     />
   );
 }

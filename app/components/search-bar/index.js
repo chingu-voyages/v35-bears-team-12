@@ -46,7 +46,7 @@ function SearchBar() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <InputGroup size="md" w={{ base: "30rem", lg: "50rem" }}>
+      <InputGroup size="md" w={{ base: "45rem", lg: "50rem" }}>
         <InputLeftElement>
           <IconButton
             border="none"
