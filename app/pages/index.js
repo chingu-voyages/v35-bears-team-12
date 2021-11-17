@@ -38,8 +38,6 @@ export default function Home() {
   return (
     <Container title="Home Page | Chingu Board">
       <ContentWrapper>
-        <Heading>Home</Heading>
-
         {!session && (
           <>
             Not signed in
@@ -92,8 +90,9 @@ const ProjectCard = ({ project }) => {
         mx="auto"
         mb="0.5rem"
         p="2rem"
-        border="2px solid"
-        borderRadius="4px"
+        bgColor="#FFFFFF"
+        border="1px solid"
+        borderRadius="3px"
         borderColor={colorGrey}
         w={{ base: "21em", lg: "57.5rem" }}
       >
