@@ -15,6 +15,7 @@ import { useColorModeSwitcher } from "../hooks/useColorModeSwitcher";
 import { useUserStore } from "../context/useUserStore";
 import { useAsync } from "../hooks/useAsync";
 import { client } from "../utils/api-client";
+import prisma from "../../lib/prisma";
 // try {
 //   const data = await client("projects");
 //   if (data) {
@@ -25,20 +26,20 @@ import { client } from "../utils/api-client";
 //   throw new Error(`Error occured: ${e.message}`);
 // }
 
-export default function Home() {
+export default function Home({ allProjects }) {
+  const projects = JSON.parse(allProjects);
   // const [session, loading] = useSession();
-  const { session } = useUserStore();
-  const { data, error, run, isLoading, isError, isSuccess } = useAsync();
+  // const { session } = useUserStore();
+  // const { data, error, run, isLoading, isError, isSuccess } = useAsync();
 
   // TODO: put initial fetch into getServerSideProps() call.
-  React.useEffect(() => {
-    run(client("d/projects"));
-  }, [run]);
-
+  // React.useEffect(() => {
+  //   run(client("d/projects"));
+  // }, [run]);
   return (
     <Container title="Home Page | Chingu Board">
       <ContentWrapper>
-        {!session && (
+        {/* {!session && (
           <>
             Not signed in
             <br />
@@ -61,27 +62,45 @@ export default function Home() {
           ) : (
             <Text>No records were found</Text>
           )
-        ) : null}
+        ) : null} */}
+        {projects ? (
+          <Box>
+            {projects.map((p) => (
+              <ProjectCard key={p.id} project={p} />
+            ))}
+          </Box>
+        ) : (
+          <Text>No records were found</Text>
+        )}
       </ContentWrapper>
     </Container>
   );
 }
+export const getStaticProps = async () => {
+  const projects = await prisma.project.findMany();
+  const allProjects = await JSON.stringify(projects);
+  // console.log(allProjects);
+  return { props: { allProjects } };
+};
 
 const ProjectCard = ({ project }) => {
   const { colorGrey } = useColorModeSwitcher();
 
   const {
-    _,
-    positionTitle,
-    github,
-    discordLink,
-    appName,
-    appLogo,
-    teamName,
-    timeCommitment,
+    id,
+    createdAt,
+    updatedAt,
+    projectName,
     catchPhrase,
-    teamCount,
     description,
+    startDate,
+    positionTitles,
+    keywords,
+    timeZone,
+    githubLink,
+    discordId,
+    isChinguVoyage,
+    teamId,
   } = project;
 
   return (
@@ -91,15 +110,13 @@ const ProjectCard = ({ project }) => {
         mb="0.5rem"
         p="2rem"
         bgColor="#FFFFFF"
-        border="1px solid"
-        borderRadius="3px"
+        boxShadow="md"
+        borderRadius="7px"
         borderColor={colorGrey}
         w={{ base: "21em", lg: "57.5rem" }}
       >
         <Heading textTransform="capitalize" as="h4" variant="h4" mb="0.5rem">
-          {appName} <br />
-          {teamName} <br />
-          {positionTitle} <br />
+          {projectName} <br />
         </Heading>
         <Text variant="body" mb="2rem">
           {catchPhrase}
