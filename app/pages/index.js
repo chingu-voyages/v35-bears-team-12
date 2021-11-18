@@ -11,6 +11,7 @@ import {
   Text,
   Spinner,
 } from "@chakra-ui/react";
+import ProjectCard from "../components/post-card";
 import { useColorModeSwitcher } from "../hooks/useColorModeSwitcher";
 import { useUserStore } from "../context/useUserStore";
 import { useAsync } from "../hooks/useAsync";
@@ -81,50 +82,4 @@ export const getStaticProps = async () => {
   const allProjects = await JSON.stringify(projects);
   // console.log(allProjects);
   return { props: { allProjects } };
-};
-
-const ProjectCard = ({ project }) => {
-  const { colorGrey } = useColorModeSwitcher();
-
-  const {
-    id,
-    createdAt,
-    updatedAt,
-    projectName,
-    catchPhrase,
-    description,
-    startDate,
-    positionTitles,
-    keywords,
-    timeZone,
-    githubLink,
-    discordId,
-    isChinguVoyage,
-    teamId,
-  } = project;
-
-  return (
-    <VStack spacing="4rem" w="100%" mx="auto">
-      <Box
-        mx="auto"
-        mb="0.5rem"
-        p="2rem"
-        bgColor="#FFFFFF"
-        boxShadow="md"
-        borderRadius="7px"
-        borderColor={colorGrey}
-        w={{ base: "21em", lg: "57.5rem" }}
-      >
-        <Heading textTransform="capitalize" as="h4" variant="h4" mb="0.5rem">
-          {projectName} <br />
-        </Heading>
-        <Text variant="body" mb="2rem">
-          {catchPhrase}
-        </Text>
-        <Text variant="body" mb="2rem">
-          {description}
-        </Text>
-      </Box>
-    </VStack>
-  );
 };

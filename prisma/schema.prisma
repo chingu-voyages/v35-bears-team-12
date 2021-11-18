@@ -1,5 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
+// TODO: Learn how to set up data proxy in Prisma
 
 // Commands to know:
 // `npx prisma generate` - update TypeScript definitions based on this schema
@@ -11,6 +12,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  // previewFeatures = ["dataProxy"]
 }
 
 datasource db {
