@@ -52,6 +52,7 @@
     "@fontsource/iosevka": "^4.5.1",
     "@fontsource/sora": "^4.2.2",
     "@prisma/client": "^3.4.2",
+    "axios": "^0.24.0",
     "date-fns": "^2.25.0",
     "framer-motion": "^4",
     "next": "^12.0.3",

@@ -6,6 +6,8 @@
  *  4) fetch real keywords from database
  *  5) pagination in index page by 8 projects per page
  */
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import {
   Box,
   Badge,
@@ -24,12 +26,18 @@ import Image from "next/image";
 import miscLogo from "../../public/misc-projectLogo.png";
 import { github, discord } from "../../content/socials";
 
+// async function getTeam() {
+//   const team = await axios.get("/api/team");
+//   return team.data;
+// }
+
 // TODO: fetch project team name from database
 const ProjectCard = ({ project }) => {
   // temp static data
   const keywords = {
     data: ["js", "django", "react", "nextjs", "figma"],
   };
+  const [teamData, setTeamData] = useState();
   const [isExpanded, setExpanded] = useBoolean();
   const { colorGrey, secondaryThemed } = useColorModeSwitcher();
 
@@ -49,6 +57,18 @@ const ProjectCard = ({ project }) => {
     isChinguVoyage,
     teamId,
   } = project;
+
+  // run it only once on mount
+
+  useEffect(() => {
+    axios
+      .get(`/api/team/${teamId}`)
+      .then((result) => {
+        console.log(result.data);
+        setTeamData(result.data);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <VStack mx="auto" w="80%" spacing="0rem" mb="2rem" pb={0}>

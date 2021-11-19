@@ -16,7 +16,7 @@ import { useColorModeSwitcher } from "../hooks/useColorModeSwitcher";
 import { useUserStore } from "../context/useUserStore";
 import { useAsync } from "../hooks/useAsync";
 import { client } from "../utils/api-client";
-import prisma from "../../lib/prisma";
+import prisma from "../lib/prisma";
 // try {
 //   const data = await client("projects");
 //   if (data) {
