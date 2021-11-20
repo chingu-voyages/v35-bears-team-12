@@ -84,6 +84,7 @@ function Navbar({ isOpen, toggleIsOpen }) {
                 variant="authThemed"
                 w="100%"
                 fontSize={18}
+                mb={3}
               >
                 +Log Out+
               </Button>
@@ -94,6 +95,7 @@ function Navbar({ isOpen, toggleIsOpen }) {
                 w="100%"
                 onClick={loginHandler}
                 fontSize={18}
+                mb={3}
               >
                 +Log In+
               </Button>
