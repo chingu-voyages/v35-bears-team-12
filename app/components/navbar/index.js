@@ -2,8 +2,6 @@ import React from "react";
 import { SearchBar } from "../search-bar";
 import { Box, Flex, HStack, VStack, Center, Heading } from "@chakra-ui/layout";
 import { Button, Divider } from "@chakra-ui/react";
-import { MoonIcon as IoMoon } from "../icons/moon-icon";
-import { SunIcon as IoSunnyOutline } from "../icons/sun-icon";
 import { IconButton } from "@chakra-ui/button";
 import { useToggle } from "../../hooks/useToggle";
 import { useColorModeSwitcher } from "../../hooks/useColorModeSwitcher";
@@ -53,6 +51,8 @@ function Navbar({ isOpen, toggleIsOpen }) {
           />
         </Heading>
 
+        <MenuButton toggleIsOpen={toggleIsOpen} />
+
         <HStack spacing={{ base: 0, md: 8 }}>
           <Flex align="center" as="ul" display={{ base: "none", lg: "flex" }}>
             <HoverDropDown href="/discover" title="Discover" variant="noStyle">
@@ -99,8 +99,14 @@ function Navbar({ isOpen, toggleIsOpen }) {
               </Button>
             )}
           </Flex>
-          <HStack display={{ lg: "none" }}>
-            <Image src={menuIcon} alt="Menu" width="39px" height="26px" />
+          <HStack display={{ lg: "none" }} _hover={{ cursor: "pointer" }}>
+            <Image
+              src={menuIcon}
+              alt="Menu"
+              width="39px"
+              height="26px"
+              onClick={toggleIsOpen}
+            />
           </HStack>
         </HStack>
       </Flex>
