@@ -17,6 +17,7 @@ import { useUserStore } from "../context/useUserStore";
 import { useAsync } from "../hooks/useAsync";
 import { client } from "../utils/api-client";
 import prisma from "../lib/prisma";
+
 // try {
 //   const data = await client("projects");
 //   if (data) {
@@ -29,6 +30,16 @@ import prisma from "../lib/prisma";
 
 export default function Home({ allProjects }) {
   const projects = JSON.parse(allProjects);
+
+  // const mapMembers = () => {
+  //   projects.map((project) => {
+  //     project.team.members.map((member) => {
+  //       console.log(member);
+  //     });
+  //   });
+  // };
+  // if (projects) mapMembers();
+
   // const [session, loading] = useSession();
   // const { session } = useUserStore();
   // const { data, error, run, isLoading, isError, isSuccess } = useAsync();
@@ -78,7 +89,27 @@ export default function Home({ allProjects }) {
   );
 }
 export const getStaticProps = async () => {
-  const projects = await prisma.project.findMany();
+  // query all projects with particular team data relevant to the use case on this page
+  // sorts the data in descending order by the date of creation
+  const projects = await prisma.project.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: {
+      team: {
+        include: {
+          members: {
+            select: {
+              // id: true,
+              username: true,
+              avatarUrl: true,
+              github: true,
+            },
+          },
+        },
+      },
+    },
+  });
   const allProjects = await JSON.stringify(projects);
   // console.log(allProjects);
   return { props: { allProjects } };

@@ -8,12 +8,16 @@
  */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+// format is kinda ads a huge chunk of js on load, maybe use native date api
+import { format } from "date-fns";
 import {
   Box,
   Badge,
   Button,
   Heading,
   Flex,
+  Grid,
+  GridItem,
   VStack,
   HStack,
   Text,
@@ -37,7 +41,7 @@ const ProjectCard = ({ project }) => {
   const keywords = {
     data: ["js", "django", "react", "nextjs", "figma"],
   };
-  const [teamData, setTeamData] = useState();
+  // const [teamData, setTeamData] = useState();
   const [isExpanded, setExpanded] = useBoolean();
   const { colorGrey, secondaryThemed } = useColorModeSwitcher();
 
@@ -56,22 +60,30 @@ const ProjectCard = ({ project }) => {
     discordId,
     isChinguVoyage,
     teamId,
+    team,
   } = project;
 
   // run it only once on mount
 
-  useEffect(() => {
-    axios
-      .get(`/api/team/${teamId}`)
-      .then((result) => {
-        console.log(result.data);
-        setTeamData(result.data);
-      })
-      .catch(console.error);
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`/api/team/${teamId}`)
+  //     .then((result) => {
+  //       console.log(result.data);
+  //       setTeamData(result.data);
+  //     })
+  //     .catch(console.error);
+  // }, []);
 
   return (
-    <VStack mx="auto" w="80%" spacing="0rem" mb="2rem" pb={0}>
+    <VStack
+      mx="auto"
+      w="80%"
+      spacing="0rem"
+      mb="2rem"
+      pb={0}
+      onClick={setExpanded.toggle}
+    >
       <HStack
         spacing="4rem"
         w="inherit"
@@ -113,7 +125,7 @@ const ProjectCard = ({ project }) => {
             mt="3.5rem"
           >
             {keywords.data.map((keyword) => (
-              <Badge variant="primary" mt="0.5rem" mb="0.5rem">
+              <Badge key={keyword} variant="primary" mt="0.5rem" mb="0.5rem">
                 {keyword}
               </Badge>
             ))}
@@ -147,29 +159,73 @@ const ProjectCard = ({ project }) => {
             variant="link"
             onClick={setExpanded.toggle}
           >
-            Read More
+            Tap on card to expand
           </Button>
         </VStack>
       </HStack>
       <ExpandableWrapper
         isVisible={isExpanded}
+        data={team}
         w="inherit"
         bgColor="accent.simpleWhite"
         boxShadow="lg"
         borderRadius="7px"
       >
-        <p>Boolean state: {isExpanded.toString()}</p>
+        <GridItem colSpan={2} p={4}>
+          <Text variant="body">Team Name: {team.teamName}</Text>
+        </GridItem>
+
+        <GridItem colStart={3} colEnd={6} p={4}>
+          <Text variant="body">
+            Start Date: {format(new Date(startDate), "MMM d y")}
+          </Text>
+          <Text variant="body">Timezone: {timeZone}</Text>
+        </GridItem>
+
+        <GridItem colSpan={2} p={4}>
+          <Text>
+            Team description: <br /> {team.description}
+          </Text>
+        </GridItem>
+
+        <GridItem colStart={3} colEnd={6} p={4}>
+          <Text variant="body">{catchPhrase}</Text>
+        </GridItem>
+
+        <GridItem colSpan={2} p={4}>
+          Members: {team.members.map((member) => member.username)}
+        </GridItem>
+
+        <GridItem colStart={3} colEnd={6} p={4}>
+          <Text variant="body">{description}</Text>
+        </GridItem>
+
+        <GridItem colSpan={2} p={4}>
+          <Box alignSelf="flex-start">
+            <SocialLink
+              color={github.color}
+              icon={github.icon}
+              href={team.githubLink}
+              name={github.name}
+            />
+          </Box>
+        </GridItem>
       </ExpandableWrapper>
     </VStack>
   );
 };
 
-const ExpandableWrapper = ({ children, isVisible, ...other }) => {
+const ExpandableWrapper = ({ children, isVisible, data, ...other }) => {
   return (
-    <Box display={isVisible ? "block" : "none"} {...other}>
-      This Is Expandable Section
+    <Grid
+      display={isVisible ? "grid" : "none"}
+      templateColumns="repeat(5, 1fr)"
+      gap="1rem"
+      {...other}
+    >
+      {/* This Is Expandable Section */}
       {children}
-    </Box>
+    </Grid>
   );
 };
 
