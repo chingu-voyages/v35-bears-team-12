@@ -51,6 +51,7 @@
     "@fontsource/baloo-bhai-2": "^4.5.0",
     "@fontsource/iosevka": "^4.5.1",
     "@fontsource/sora": "^4.2.2",
+    "@next-auth/prisma-adapter": "^0.5.4",
     "@prisma/client": "^3.4.2",
     "axios": "^0.24.0",
     "date-fns": "^2.25.0",

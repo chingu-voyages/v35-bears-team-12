@@ -46,17 +46,60 @@ enum ProjectStatus {
   PENDING
 }
 
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String  @map("user_id")
+  type               String
+  provider           String
+  providerAccountId  String  @map("provider_account_id")
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
 model User {
-  id              String       @id @default(uuid())
-  createdAt       DateTime     @default(now())
-  updatedAt       DateTime     @updatedAt
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime? @map("email_verified")
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
   // general data
-  email           String       @unique(map: "User.email_unique")
-  username        String?
+  // email           String       @unique(map: "User.email_unique")
+  // username        String?
   github          String?
   discordId       String?
-  isEmailVerified Boolean
-  avatarUrl       String?
+  // isEmailVerified Boolean
+  // avatarUrl       String?
   settings        Json?
   // misc enums for a user
   role            Role         @default(MEMBER)
@@ -66,6 +109,8 @@ model User {
   creatorOf Team[] @relation("Creator")
   memberOf  Team[] @relation("Member")
 
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
   // user sessions
   // sessions     Session[]
   // user posts ? if we gonna add this functionality
@@ -74,7 +119,7 @@ model User {
 }
 
 model Team {
-  id             String    @id @default(uuid())
+  id             String    @id @default(cuid())
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
   // general data
@@ -95,7 +140,7 @@ model Team {
 }
 
 model Project {
-  id             String    @id @default(uuid())
+  id             String    @id @default(cuid())
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
   // general data
