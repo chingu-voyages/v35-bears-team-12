@@ -101,8 +101,8 @@ export const getStaticProps = async () => {
           members: {
             select: {
               // id: true,
-              username: true,
-              avatarUrl: true,
+              name: true,
+              image: true,
               github: true,
             },
           },
