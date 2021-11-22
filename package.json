@@ -63,6 +63,7 @@
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.12.1",
     "react-icons": "^4.3.1",
+    "react-query": "^3.33.4",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

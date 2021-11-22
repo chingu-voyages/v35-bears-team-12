@@ -1,14 +1,20 @@
 import React from "react";
-import { Provider } from "next-auth/client";
+
 import "../styles/globals.css";
 /* Fonts */
 import "@fontsource/sora";
 import "@fontsource/antic-didone";
 import "@fontsource/baloo-bhai-2";
-
-// Global store for server side data for a user
+/* Providers */
+import queryClient from "../lib/react-query";
+import customTheme from "../styles/theme";
 import { UserProvider } from "../context/useUserStore";
+import { ChakraProvider } from "@chakra-ui/react";
+import { Provider as NextAuthProvider } from "next-auth/client";
+import { Hydrate } from "react-query/hydration";
+import { QueryClientProvider } from "react-query";
 
+// Uncomment these lines to turn on MSW testing
 // if (process.env.NODE_ENV === "development") {
 //   if (typeof window === "undefined") {
 //     const { server } = require("../../__mocks__/server");
@@ -23,22 +29,20 @@ import { UserProvider } from "../context/useUserStore";
 //   }
 // }
 
-import customTheme from "../styles/theme";
-import { ChakraProvider } from "@chakra-ui/react";
-
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
-    // next auth provider
-    <Provider session={pageProps.session}>
-      {/* user server data store provider */}
-      <UserProvider>
-        {/* chakra theme */}
-        <ChakraProvider theme={customTheme}>
-          <Component {...pageProps} />
-        </ChakraProvider>
-      </UserProvider>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <NextAuthProvider session={pageProps.session}>
+          <UserProvider>
+            <ChakraProvider theme={customTheme}>
+              <Component {...pageProps} />
+            </ChakraProvider>
+          </UserProvider>
+        </NextAuthProvider>
+      </Hydrate>
+    </QueryClientProvider>
   );
 }
 
-export default MyApp;
+export default App;
