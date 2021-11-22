@@ -9,19 +9,19 @@ import "@fontsource/baloo-bhai-2";
 // Global store for server side data for a user
 import { UserProvider } from "../context/useUserStore";
 
-if (process.env.NODE_ENV === "development") {
-  if (typeof window === "undefined") {
-    const { server } = require("../../__mocks__/server");
-    server.listen({
-      warnOnUncaptured: false,
-    });
-  } else {
-    const { worker } = require("../../__mocks__/browser");
-    worker.start({
-      warnOnUncaptured: false,
-    });
-  }
-}
+// if (process.env.NODE_ENV === "development") {
+//   if (typeof window === "undefined") {
+//     const { server } = require("../../__mocks__/server");
+//     server.listen({
+//       warnOnUncaptured: false,
+//     });
+//   } else {
+//     const { worker } = require("../../__mocks__/browser");
+//     worker.start({
+//       warnOnUncaptured: false,
+//     });
+//   }
+// }
 
 import customTheme from "../styles/theme";
 import { ChakraProvider } from "@chakra-ui/react";

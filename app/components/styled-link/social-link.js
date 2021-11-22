@@ -3,11 +3,9 @@ import VisuallyHidden from "@chakra-ui/visually-hidden";
 import { Icon } from "@chakra-ui/icons";
 import { useToggle } from "../../hooks/useToggle";
 import { Link, Center } from "@chakra-ui/layout";
-import { useMediaQuery } from "@chakra-ui/media-query";
 
-function SocialLink({ children, color, icon, href, name }) {
+function SocialLink({ children, color, icon, href, _name }) {
   const [hover, toggleHover] = useToggle();
-  const [isLarge] = useMediaQuery("(min-width: 992px)");
   return (
     <Center
       as="li"
@@ -26,7 +24,7 @@ function SocialLink({ children, color, icon, href, name }) {
         <Icon
           aria-hidden
           as={icon}
-          boxSize={{ base: "0.5rem", lg: "1rem" }}
+          boxSize={{ base: "1rem", lg: "1rem" }}
           // fill="roseRed.900"
           fill={hover && color}
           mr={{ lg: "0.25rem" }}
@@ -34,7 +32,6 @@ function SocialLink({ children, color, icon, href, name }) {
           transitionDuration="500ms"
         />
         {children}
-        {!isLarge && <VisuallyHidden>{name}</VisuallyHidden>}
       </Link>
     </Center>
   );

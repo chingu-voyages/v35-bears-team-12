@@ -6,7 +6,6 @@
 // the import statements is not ideal and type: module in pkg json is not ideal as well
 import pkg from "@prisma/client";
 import faker from "faker";
-// import { subMonths } from "date-fns";
 
 const { PrismaClient } = pkg;
 let prisma;
@@ -21,29 +20,38 @@ if (process.env.NODE_ENV === "production") {
   prisma = global.prisma;
 }
 
+const keywords = [
+  "javascript",
+  "react",
+  "python",
+  "go",
+  "robotics",
+  "data science",
+  "c++",
+  "front-end",
+  "back-end",
+  "fullstack",
+];
+
 async function main() {
-  // if (process.env.NODE_ENV !== "development") {
-  //   return;
-  // }
+  // randomly make true/ false for testing purposes
+  const randomBool = () => (Math.random() > 0.4 ? true : false);
 
-  // await prisma.user.deleteMany({})
-  // await prisma.team.deleteMany({})
-  // await prisma.project.deleteMany({})
-
-  // create users
+  // create custom users with upsert, not an efficient way to do it, but it will work
   const jim = await prisma.user.upsert({
     where: { email: "jim@chingu.io" },
     update: {},
     create: {
       email: `jim@chingu.io`,
-      username: "Jim",
+      name: "Jim",
       voyageStatus: "TIER3",
       role: "ADMIN",
-      isEmailVerified: true,
+      image: "https://i.pravatar.cc/150",
+      emailVerified: faker.date.past(),
       creatorOf: {
         create: {
           teamName: "Chingu",
-          description: "vitae ipsum aliquam non mauris morbi non lectus",
+          description: faker.lorem.paragraph(),
           githubLink:
             "http://symantec.com/volutpat/eleifend/donec/ut/dolor.json?eu=nulla&nibh=neque&quisque=libero&id=convallis&justo=eget&sit=eleifend&amet=luctus&sapien=ultricies&dignissim=eu&vestibulum=nibh&vestibulum=quisque&ante=id&ipsum=justo&primis=sit&in=amet&faucibus=sapien&orci=dignissim&luctus=vestibulum&et=vestibulum&ultrices=ante&posuere=ipsum&cubilia=primis&curae=in&nulla=faucibus&dapibus=orci&dolor=luctus&vel=et&est=ultrices&donec=posuere&odio=cubilia&justo=curae&sollicitudin=nulla&ut=dapibus&suscipit=dolor&a=vel&feugiat=est&et=donec&eros=odio&vestibulum=justo&ac=sollicitudin&est=ut&lacinia=suscipit&nisi=a&venenatis=feugiat&tristique=et&fusce=eros&congue=vestibulum&diam=ac&id=est&ornare=lacinia&imperdiet=nisi&sapien=venenatis&urna=tristique&pretium=fusce&nisl=congue&ut=diam&volutpat=id",
           avatarUrl: "http://dummyimage.com/171x100.png/cc0000/ffffff",
@@ -63,10 +71,11 @@ async function main() {
     update: {},
     create: {
       email: `alex@example.io`,
-      username: "Alex",
+      name: "Alex",
+      image: "https://i.pravatar.cc/150",
       voyageStatus: "TIER3",
       role: "MEMBER",
-      isEmailVerified: true,
+      emailVerified: faker.date.past(),
       creatorOf: {
         create: [
           {
@@ -100,10 +109,11 @@ async function main() {
     update: {},
     create: {
       email: `vinclou@example.io`,
-      username: "Vincent",
+      name: "Vincent",
+      image: "https://i.pravatar.cc/150",
       voyageStatus: "TIER3",
       role: "MEMBER",
-      isEmailVerified: true,
+      emailVerified: faker.date.past(),
       creatorOf: {
         create: [
           {
@@ -144,10 +154,11 @@ async function main() {
     update: {},
     create: {
       email: `biz@example.io`,
-      username: "Elizabeth",
+      name: "Elizabeth",
+      image: "https://i.pravatar.cc/150",
       voyageStatus: "TIER3",
       role: "MEMBER",
-      isEmailVerified: true,
+      emailVerified: faker.date.past(),
       creatorOf: {
         create: {
           teamName: "Orange",
@@ -172,10 +183,11 @@ async function main() {
     update: {},
     create: {
       email: `mia@example.io`,
-      username: "Mia",
+      name: "Mia",
       voyageStatus: "TIER3",
+      image: "https://i.pravatar.cc/150",
       role: "MEMBER",
-      isEmailVerified: true,
+      emailVerified: faker.date.past(),
       creatorOf: {
         create: {
           teamName: "Purple",
@@ -195,25 +207,9 @@ async function main() {
     },
   });
 
-  // example -> add some members to the purple team
-  // const getAlex = await prisma.team.update({
-  //   where: {
-  //     teamName: "Red",
-  //     teamName: "Blue",
-  //   },
-  //   data: {
-  //     members: {
-  //       connect: [
-  //         // { email: "jim@chingu.io" },
-  //         { email: "alex@example.io"}
-  //       ]
-  //     }
-  //   }
-  // });
-  // console.log(getAlex);
-  // seed tables with projects
+  // Fetch the first 4 teams that have been created
+  // and put them some members in them
   const teams = await prisma.team.findMany();
-  console.log(teams);
   let usrs, prjs;
 
   for (const [team, user] of [
@@ -249,25 +245,148 @@ async function main() {
     });
   }
 
-  await Promise.all([usrs, prjs]);
+  // a bit more readable way to create users, but createMany is more efficient
+  const listOfNewUsers = [...new Array(13)].map(() => {
+    const email = faker.internet.email();
+    return {
+      email: email,
+      name: faker.name.findName(),
+      image: faker.image.image(),
+      github: faker.internet.url(),
+      discordId: faker.random.alphaNumeric(7),
+      creatorOf: {
+        create: {
+          teamName: faker.company.companyName(),
+          description: faker.lorem.paragraph(),
+          githubLink: faker.internet.url(),
+          avatarUrl: faker.image.avatar(),
+          isChinguVoyage: randomBool(),
+          members: {
+            connect: {
+              email: email,
+            },
+          },
+        },
+      },
+    };
+  });
 
-  // const projects = await prisma.project.create({
-  //   data: {
-  //     projectName: faker.commerce.productName(),
-  //     catchPhrase: faker.company.catchPhrase(),
-  //     description: faker.lorem.paragraph(),
-  //     startDate:   faker.date.future(),
-  //     timeZone:    faker.address.timeZone(),
-  //     team: {
-  //       connect: { id: teams[0].id }
-  //     },
-  //   }
-  // });
-  // console.log(projects);
-  // const users = await prisma.user.findMany();
-  // console.log(users);
+  let staticUsers, addMissingProjects;
+  for (let data of listOfNewUsers) {
+    staticUsers = await prisma.user.create({
+      data,
+    });
 
-  // console.log(teams);
+    // console.log(user);
+  }
+  // const fetchUsers = await prisma.user.findMany();
+  // this will return teams that have no projects yet
+  const fetchTeams = await prisma.team.findMany({
+    where: {
+      projects: {
+        // learn about some oprion as well later
+        none: {
+          id: undefined,
+        },
+      },
+    },
+  });
+  // console.log(fetchUsers);
+  // console.log(fetchTeams);
+  // for (const user of fetchUsers) {
+  //   console.log(user.email);
+  // }
+
+  for (const team of fetchTeams) {
+    console.log(team.teamName);
+    addMissingProjects = await prisma.project.create({
+      data: {
+        projectName: faker.internet.userName(),
+        catchPhrase: faker.company.catchPhrase(),
+        description: faker.lorem.paragraph(),
+        githubLink: faker.internet.url(),
+        discordId: faker.random.alphaNumeric(7),
+        startDate: faker.date.future(),
+        timeZone: faker.address.timeZone(),
+        team: {
+          connect: { id: team.id },
+        },
+      },
+    });
+  }
+
+  // add keywords to the projects
+  const fetchProjects = await prisma.project.findMany();
+  // let insertKeywords;
+
+  await prisma.project.update({
+    where: {
+      id: fetchProjects[0].id,
+    },
+    data: {
+      keywords: {
+        create: [
+          {
+            keyword: keywords[3],
+          },
+          {
+            keyword: keywords[2],
+          },
+          {
+            keyword: keywords[1],
+          },
+        ],
+      },
+    },
+  });
+  await prisma.project.update({
+    where: {
+      id: fetchProjects[1].id,
+    },
+    data: {
+      keywords: {
+        create: [
+          {
+            keyword: keywords[4],
+          },
+          {
+            keyword: keywords[5],
+          },
+          {
+            keyword: keywords[6],
+          },
+        ],
+      },
+    },
+  });
+  await prisma.project.update({
+    where: {
+      id: fetchProjects[2].id,
+    },
+    data: {
+      keywords: {
+        create: [
+          {
+            keyword: keywords[7],
+          },
+          {
+            keyword: keywords[8],
+          },
+          {
+            keyword: keywords[9],
+          },
+        ],
+      },
+    },
+  });
+
+  await Promise.all([
+    usrs,
+    prjs,
+    staticUsers,
+    addMissingProjects,
+    // insertKeywords,
+  ]);
 }
 
 main()
@@ -276,5 +395,6 @@ main()
     process.exit(1);
   })
   .finally(async () => {
+    console.log("---");
     await prisma.$disconnect();
   });
