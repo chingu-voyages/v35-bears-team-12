@@ -8,9 +8,12 @@
 // `npx prisma generate` - update TypeScript definitions based on this schema
 // `npx prisma db push` - push the schema changes to the database
 // `npx prisma db seed` - seed the database with some data
+// `npx prisma db push --force-reset` - reset the database
 // `npx prisma studio` - open the Studio, which allows you to edit the schema.
 // `npx prisma migrate reset` - reset the migrations to the last version. This will reset the DB and run the seed script
 // `npx prisma migrate dev --name <descriptive-name>` - generate a migration file for any changes you make to the schema (this will be committed).
+// `npx prisma migrate reset --force && prisma migrate deploy`
+
 
 generator client {
   provider = "prisma-client-js"
@@ -44,7 +47,7 @@ enum VoyageStatus {
 enum ProjectStatus {
   COMPLETED
   ONGOING
-  // looking for members
+  NOT_STARTED
   PENDING
 }
 
@@ -152,7 +155,7 @@ model Project {
   startDate      DateTime?
   // document json data, to make things a bit less complex in terms of tables?
   positionTitles Json?
-  keywords       Json?
+  // keywords       Json?
   // won't be a super bad idea to make it a string since that's user input
   timeZone       String?
   githubLink     String?
@@ -162,15 +165,18 @@ model Project {
   // one to one creator
   team           Team      @relation("TeamCreator", fields: [teamId], references: [id])
   teamId         String
+  keywords       Keyword[] @relation("ProjectKeywords")
 }
 
-// model Session {
-//   id             String   @id @default(uuid())
-//   createdAt      DateTime @default(now())
-//   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-//   userId         String
-//   expirationDate DateTime
-// }
+model Keyword {
+  id         Int   @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  // general data
+  keyword    String   @unique(map: "Keyword.keyword_unique")
+  // relations
+  projects   Project[] @relation("ProjectKeywords")
+}
 
 // Experiments Begin Here
 // model ProjectPost {
