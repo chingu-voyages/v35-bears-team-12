@@ -2,13 +2,12 @@ import React from "react";
 import {
   Input,
   InputGroup,
-  InputRightElement,
+  InputLeftElement,
   IconButton,
 } from "@chakra-ui/react";
 import { SearchIcon } from "../icons/search-icon";
 import { useForm } from "react-hook-form";
 import { useColorModeSwitcher } from "../../hooks/useColorModeSwitcher";
-import { client } from "../../utils/api-client";
 
 const delay = (fn, ms, ...args) => setTimeout(fn, ms, ...args);
 
@@ -47,10 +46,22 @@ function SearchBar() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <InputGroup size="md" w={{ base: "20rem", lg: "30rem" }}>
+      <InputGroup size="md" w={{ base: "45rem", lg: "50rem" }}>
+        <InputLeftElement>
+          <IconButton
+            border="none"
+            variant="unstyled"
+            // color={authThemed}
+            // borderRadius="none"
+            aria-label="search"
+            type="submit"
+            isLoading={isSubmitting}
+            icon={<SearchIcon />}
+          />
+        </InputLeftElement>
         <Input
           borderRadius="none"
-          placeholder="search"
+          placeholder="Search"
           type="text"
           {...register("search", {
             minLength: 1,
@@ -62,19 +73,6 @@ function SearchBar() {
             {errors.search.message}
           </Text>
         )}
-        <InputRightElement>
-          <IconButton
-            border="none"
-            variant="unstyled"
-            // color={authThemed}
-            // borderRadius="none"
-            aria-label="search"
-            type="submit"
-            isLoading={isSubmitting}
-            icon={<SearchIcon />}
-            // variant="ghost"
-          />
-        </InputRightElement>
       </InputGroup>
     </form>
   );
