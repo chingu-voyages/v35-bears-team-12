@@ -108,7 +108,7 @@ const ProjectCard = ({ project }) => {
               />
             </Box>
             <Box mt="-3.0rem" mb="2rem">
-              <Heading textTransform="capitalize" as="h5" variant="h5">
+              <Heading textTransform="capitalize" as="h4" variant="h4">
                 {projectName}
               </Heading>
               <Text variant="subTitle" mb="0.2rem" p="0.1rem">

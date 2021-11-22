@@ -1,7 +1,8 @@
 // TODO add more fonts
 export const fonts = {
-  heading: "Antic Didone",
-  body: "Iosevka",
+  heading: "Crimson Text",
+  body: "IBM Plex Sans",
+  // link: "Laila",
 };
 
 export const Heading = {
@@ -56,22 +57,22 @@ export const Text = {
 export const textStyles = {
   h1: {
     fontSize: { base: "32px", lg: "56px" },
-    fontWeight: 700,
+    fontWeight: 600,
     lineHeight: { base: "140%", lg: "125%" },
   },
   h2: {
     fontSize: { base: "24px", xl: "36px" },
-    fontWeight: 700,
+    fontWeight: 600,
     lineHeight: { base: "150%", lg: "130%" },
   },
   h3: {
     fontSize: { base: "20px", xl: "28px" },
-    fontWeight: 700,
+    fontWeight: 600,
     lineHeight: { base: "150%", lg: "140%" },
   },
   h4: {
-    fontSize: { base: "18px", xl: "24px" },
-    fontWeight: 700,
+    fontSize: { base: "14px", xl: "20px" },
+    fontWeight: 600,
     lineHeight: { base: "150%", lg: "140%" },
   },
   subtitle: {
@@ -88,12 +89,12 @@ export const textStyles = {
   body: {
     fontSize: "16px",
     fontWeight: 500,
-    lineHeight: "150%",
+    lineHeight: "140%",
   },
   bodyLight: {
     fontSize: "16px",
-    fontWeight: 300,
-    lineHeight: "150%",
+    fontWeight: 400,
+    lineHeight: "140%",
   },
   small: {
     fontSize: "14px",

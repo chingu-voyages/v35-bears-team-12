@@ -2,9 +2,10 @@ import React from "react";
 
 import "../styles/globals.css";
 /* Fonts */
-import "@fontsource/sora";
-import "@fontsource/antic-didone";
-import "@fontsource/baloo-bhai-2";
+import "@fontsource/laila";
+import "@fontsource/crimson-text";
+import "@fontsource/ibm-plex-sans";
+
 /* Providers */
 import queryClient from "../lib/react-query";
 import customTheme from "../styles/theme";
