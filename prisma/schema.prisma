@@ -161,6 +161,7 @@ model Project {
   githubLink     String?
   discordId      String?
   isChinguVoyage Boolean   @default(false)
+  ProjectStatus  ProjectStatus @default(NOT_STARTED)
   // relations
   // one to one creator
   team           Team      @relation("TeamCreator", fields: [teamId], references: [id])
