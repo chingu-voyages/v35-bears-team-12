@@ -1,4 +1,4 @@
-export default function projectHandler(req, res) {
+export default async function projectHandler(req, res) {
   const {
     query: { id },
     method,
@@ -8,7 +8,7 @@ export default function projectHandler(req, res) {
     case "GET":
       // Get data from your database
       try {
-        const team = await prisma.project.findUnique({
+        const project = await prisma.project.findUnique({
           where: {
             id: id,
           },
