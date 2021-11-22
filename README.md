@@ -57,7 +57,16 @@ This app is for two types of users: project managers and developers.
 
 ##### Home Page
 * as a developer,
-* I want to view information about projects that people (or organizations) want to build,
+* I want to view information about projects that people (or organizations) want to build,=
+
+##### Home Page
+* as a project manager,
+* I want to post details about a project I (or my organization) want to build,
+* so developers can decide if they want to apply to work on it
+
+##### Home Page
+* as a developer,
+* I want to view details about projects that people (or organizations) want to build,
 * so I can decide if I want to apply to work on any
 
 ##### Create a Project Page
@@ -89,6 +98,31 @@ This app is for two types of users: project managers and developers.
 * as a user,
 * I want to view the name of a fellow user, and links to their portfolio, LinkedIn and/or GitHub,
 * so I can decide whether I want to work with them
+
+##### Discover Gallery Page
+* as a project manager,
+* I want to view projects created by Chingus, and follow links to explore them further 
+* so I can get inspiration for my (or my oganization's) project, and/or find promising developers
+
+##### Discover Gallery Page
+* as a developer,
+* I want to 
+* so
+
+##### Add to Gallery Page
+* as a developer,
+* I want to 
+* so
+
+##### Settings Page
+* as a user,
+* I want to 
+* so
+
+##### Profile Page
+* as a user,
+* I want to 
+* so
 
 ### 3. Functionality
 
