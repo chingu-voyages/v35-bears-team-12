@@ -9,6 +9,7 @@ export default function Settings() {
       <ContentWrapper>
         <Heading as="h2" textAlign="center" variant="h2">
           Settings
+          Testing branch
         </Heading>
       </ContentWrapper>
     </Container>
