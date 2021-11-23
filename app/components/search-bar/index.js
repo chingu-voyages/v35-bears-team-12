@@ -50,17 +50,16 @@ function SearchBar() {
         <InputLeftElement>
           <IconButton
             aria-label="search"
-            border="none"
+            borderRadius="4px"
             variant="unstyled"
             type="submit"
-            color="accent.electricBlue"
             isLoading={isSubmitting}
             icon={<SearchIcon />}
           />
         </InputLeftElement>
         <Input
           bg="accent.simpleWhite"
-          borderRadius="none"
+          borderRadius="4px"
           placeholder="Search"
           type="text"
           {...register("search", {
