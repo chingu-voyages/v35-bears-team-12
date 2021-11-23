@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
-import NextLink from "next/link";
+import axios from "axios";
+import queryClient from "../lib/react-query";
+import { dehydrate, useQuery } from "react-query";
 import { ContentWrapper } from "../layouts/content-wrapper";
 import { Container } from "../layouts/container";
 import {
@@ -12,72 +14,27 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import ProjectCard from "../components/post-card";
-import { useColorModeSwitcher } from "../hooks/useColorModeSwitcher";
-import { useUserStore } from "../context/useUserStore";
-import { useAsync } from "../hooks/useAsync";
-import { client } from "../utils/api-client";
-import prisma from "../lib/prisma";
+// import { useColorModeSwitcher } from "../hooks/useColorModeSwitcher";
+// import { useUserStore } from "../context/useUserStore";
+// import { useAsync } from "../hooks/useAsync";
+// import { client } from "../utils/api-client";
+// import prisma from "../lib/prisma";
 
-// try {
-//   const data = await client("projects");
-//   if (data) {
-//     console.log(data);
-//     res.status(200).json(data);
-//   }
-// } catch (e) {
-//   throw new Error(`Error occured: ${e.message}`);
-// }
+const getHomepageData = async () => {
+  const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/`);
 
-export default function Home({ allProjects }) {
-  const projects = JSON.parse(allProjects);
+  return res.data;
+};
 
-  // const mapMembers = () => {
-  //   projects.map((project) => {
-  //     project.team.members.map((member) => {
-  //       console.log(member);
-  //     });
-  //   });
-  // };
-  // if (projects) mapMembers();
+export default function Home() {
+  const { data } = useQuery("projects", getHomepageData);
 
-  // const [session, loading] = useSession();
-  // const { session } = useUserStore();
-  // const { data, error, run, isLoading, isError, isSuccess } = useAsync();
-
-  // TODO: put initial fetch into getServerSideProps() call.
-  // React.useEffect(() => {
-  //   run(client("d/projects"));
-  // }, [run]);
   return (
     <Container title="Home Page | Chingu Board">
       <ContentWrapper>
-        {/* {!session && (
-          <>
-            Not signed in
-            <br />
-          </>
-        )}
-
-        {isLoading ? (
-          <Spinner />
-        ) : isError ? (
-          <Text color="roseRed.900">{error.message}</Text>
-        ) : null}
-
-        {isSuccess ? (
-          data ? (
-            <Box>
-              {data.map((p) => (
-                <ProjectCard key={p.id} project={p} />
-              ))}
-            </Box>
-          ) : (
-            <Text>No records were found</Text>
-          )
-        ) : null} */}
-        {projects ? (
+        {data ? (
           <Box>
-            {projects.map((p) => (
+            {data.map((p) => (
               <ProjectCard key={p.id} project={p} />
             ))}
           </Box>
@@ -91,26 +48,11 @@ export default function Home({ allProjects }) {
 export const getStaticProps = async () => {
   // query all projects with particular team data relevant to the use case on this page
   // sorts the data in descending order by the date of creation
-  const projects = await prisma.project.findMany({
-    orderBy: {
-      createdAt: "desc",
+  await queryClient.prefetchQuery("projects", getHomepageData);
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
     },
-    include: {
-      team: {
-        include: {
-          members: {
-            select: {
-              // id: true,
-              name: true,
-              image: true,
-              github: true,
-            },
-          },
-        },
-      },
-    },
-  });
-  const allProjects = await JSON.stringify(projects);
-  // console.log(allProjects);
-  return { props: { allProjects } };
+  };
 };

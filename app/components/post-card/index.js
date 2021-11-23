@@ -22,13 +22,12 @@ import {
   HStack,
   Text,
   useBoolean,
-  //Image,
 } from "@chakra-ui/react";
 import { SocialLink } from "../styled-link/social-link";
 import { useColorModeSwitcher } from "../../hooks/useColorModeSwitcher";
+import { github, discord } from "../../content/socials";
 import Image from "next/image";
 import miscLogo from "../../public/misc-projectLogo.png";
-import { github, discord } from "../../content/socials";
 
 // async function getTeam() {
 //   const team = await axios.get("/api/team");
@@ -62,18 +61,6 @@ const ProjectCard = ({ project }) => {
     teamId,
     team,
   } = project;
-
-  // run it only once on mount
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`/api/team/${teamId}`)
-  //     .then((result) => {
-  //       console.log(result.data);
-  //       setTeamData(result.data);
-  //     })
-  //     .catch(console.error);
-  // }, []);
 
   return (
     <VStack
@@ -146,6 +133,7 @@ const ProjectCard = ({ project }) => {
             />
           </HStack>
         </VStack>
+
         <VStack w="70%" h="inherit" alignSelf="flex-start" verticalAlign="top">
           <Text variant="body" mb="2rem">
             {description}
@@ -163,6 +151,7 @@ const ProjectCard = ({ project }) => {
           </Button>
         </VStack>
       </HStack>
+
       <ExpandableWrapper
         isVisible={isExpanded}
         data={team}

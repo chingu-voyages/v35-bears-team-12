@@ -34,7 +34,7 @@ function Navbar({ isOpen, toggleIsOpen }) {
   return (
     <Box
       as="nav"
-      p="0.4rem"
+      p="1rem"
       mb={isOpen ? { base: "1rem" } : { base: "2.5rem", lg: ".3rem" }}
     >
       <Flex
@@ -42,14 +42,7 @@ function Navbar({ isOpen, toggleIsOpen }) {
         mb={isOpen ? { base: "1rem" } : { base: "2.5rem", lg: ".3rem" }}
         p="4"
       >
-        <Heading>
-          <Image
-            src={chinguLogo}
-            alt="Chingu Logo"
-            width="175px"
-            height="59.35px"
-          />
-        </Heading>
+        <Image src={chinguLogo} alt="Chingu Logo" width="160px" height="55px" />
 
         <MenuButton toggleIsOpen={toggleIsOpen} />
 
@@ -198,7 +191,6 @@ function MenuButton({ toggleIsOpen, ...props }) {
       borderRadius="sm"
       display={{ base: "block", lg: "none" }}
       h="48px"
-      // eslint-disable-next-line react/jsx-no-bind
       onClick={handleClick}
       variant="ghost"
       w="48px"
