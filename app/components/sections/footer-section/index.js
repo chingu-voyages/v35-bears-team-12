@@ -1,15 +1,14 @@
 import React from "react";
 import { Link, VStack } from "@chakra-ui/layout";
-import { useMediaQuery } from "@chakra-ui/media-query";
+// import { useMediaQuery } from "@chakra-ui/media-query";
 import { github } from "../../../content/socials";
 import { Condensed, Full } from "../../footer";
 
-function FooterSection({ customBgColor }) {
-  const [isLarge] = useMediaQuery("(min-width: 800px)");
+function FooterSection({ isLarge }) {
   return (
     <VStack
       as="footer"
-      backgroundColor={customBgColor}
+      // backgroundColor={customBgColor}
       borderColor="neutral.300"
       borderTop="1px solid"
       py="32px"
@@ -18,7 +17,7 @@ function FooterSection({ customBgColor }) {
     >
       {isLarge ? <Full /> : <Condensed />}
       <Link align="center" href={github.href} isExternal variant="noStyle">
-        © 2021 All rights are reserved Project Init
+        © 2021 All rights are reserved Chingu.io
       </Link>
     </VStack>
   );

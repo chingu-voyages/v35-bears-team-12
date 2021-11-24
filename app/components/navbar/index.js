@@ -65,7 +65,7 @@ function Navbar({ isOpen, toggleIsOpen }) {
               <VerticalLink href="/contact" variant="noStyle">
                 Contact Us
               </VerticalLink>
-              <VerticalLink href="init/support" variant="noStyle">
+              <VerticalLink href="/support" variant="noStyle">
                 Support
               </VerticalLink>
             </HoverDropDown>

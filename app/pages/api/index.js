@@ -30,7 +30,7 @@ export default async function homeHandler(req, res) {
             },
           },
         });
-        JSON.stringify(projects);
+        // JSON.stringify(projects);
 
         res.status(200).json(projects);
       } catch (e) {

@@ -14,6 +14,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Provider as NextAuthProvider } from "next-auth/client";
 import { Hydrate } from "react-query/hydration";
 import { QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 // Uncomment these lines to turn on MSW testing
 // if (process.env.NODE_ENV === "development") {
@@ -34,6 +35,7 @@ function App({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
+        <ReactQueryDevtools initialIsOpen={false} />
         <NextAuthProvider session={pageProps.session}>
           <UserProvider>
             <ChakraProvider theme={customTheme}>
