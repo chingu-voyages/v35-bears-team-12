@@ -5,7 +5,7 @@ import prisma from "../../lib/prisma";
 */
 export default async function meHandler(req, res) {
   const {
-    // query: { id },
+    query: { token },
     method,
   } = req;
 
@@ -14,8 +14,7 @@ export default async function meHandler(req, res) {
       try {
         const me = await prisma.session.findUnique({
           where: {
-            accessToken:
-              "a887a6206c96966081c326fc5421c36bd166d7071163f51f65bc6813d53f82d6",
+            accessToken: token,
           },
           select: {
             user: {
