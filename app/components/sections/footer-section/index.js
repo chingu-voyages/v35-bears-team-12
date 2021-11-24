@@ -16,7 +16,7 @@ function FooterSection({ isLarge }) {
       w="100%"
     >
       {isLarge ? <Full /> : <Condensed />}
-      <Link align="center" href={github.href} isExternal variant="noStyle">
+      <Link align="center" href={github.href} variant="noStyle" isExternal>
         © 2021 All rights are reserved Chingu.io
       </Link>
     </VStack>

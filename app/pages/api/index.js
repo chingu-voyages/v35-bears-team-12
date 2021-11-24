@@ -1,3 +1,4 @@
+import prisma from "../../lib/prisma";
 /*
   Home Page Base Route
   Only GET is allowed here

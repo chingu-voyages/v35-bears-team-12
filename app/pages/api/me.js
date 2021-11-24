@@ -1,3 +1,4 @@
+import prisma from "../../lib/prisma";
 /*
   Fetch the current user's profile
   Only GET is allowed here -> ?
