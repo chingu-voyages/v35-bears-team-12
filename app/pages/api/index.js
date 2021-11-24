@@ -17,6 +17,11 @@ export default async function homeHandler(req, res) {
             createdAt: "desc",
           },
           include: {
+            keywords: {
+              select: {
+                keyword: true,
+              },
+            },
             team: {
               include: {
                 members: {

@@ -38,9 +38,9 @@ import logo from "../../public/misc-projectLogo.png";
 // TODO: fetch project team name from database
 const ProjectCard = ({ isMobile, project }) => {
   // temp static data
-  const keywords = {
-    data: ["js", "django", "react", "nextjs", "figma"],
-  };
+  // const keywords = {
+  //   data: ["js", "django", "react", "nextjs", "figma"],
+  // };
   // const [teamData, setTeamData] = useState();
   const [isExpanded, setExpanded] = useBoolean();
   const { colorGrey, secondaryThemed } = useColorModeSwitcher();
@@ -54,12 +54,12 @@ const ProjectCard = ({ isMobile, project }) => {
     description,
     startDate,
     positionTitles,
-    // keywords,
     timeZone,
     githubLink,
     discordId,
     isChinguVoyage,
     teamId,
+    keywords,
     team,
   } = project;
 
@@ -301,7 +301,6 @@ const ProjectCardCenterElement = ({
   keywords,
 }) => {
   // // TODO: cap the max number of keywords
-
   return (
     <VStack
       alignSelf="flex-start"
@@ -317,13 +316,13 @@ const ProjectCardCenterElement = ({
       </Text>
 
       <HStack
-        justifyContent="flex-start"
+        justifyContent="center"
         flexWrap={isMobile ? "nowrap" : "wrap"}
         p={1}
       >
-        {keywords.data.map((keyword) => (
-          <Badge key={keyword} variant="primary" mt="0.5rem" mb="0.5rem">
-            {keyword}
+        {keywords.map((key) => (
+          <Badge key={key.keyword} variant="primary" mt="0.5rem" mb="0.5rem">
+            {key.keyword}
           </Badge>
         ))}
       </HStack>
