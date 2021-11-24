@@ -37,6 +37,10 @@ export const Text = {
       textStyle: "subtitle",
       color: props.colorMode === "light" ? "neutral.600" : "neutral.100",
     }),
+    gentleTitle: (props) => ({
+      textStyle: "gentleTitle",
+      color: props.colorMode === "light" ? "neutral.700" : "neutral.100",
+    }),
     body: (props) => ({
       textStyle: "body",
       color: props.colorMode === "light" ? "neutral.600" : "neutral.200",
@@ -85,6 +89,13 @@ export const textStyles = {
     fontWeight: "bold",
     casing: "uppercase",
     lineHeight: "150%",
+  },
+  gentleTitle: {
+    fontFamily: "Laila",
+    fontSize: { base: "16px", lg: "18px" },
+    fontWeight: 600,
+    casing: "uppercase",
+    lineHeight: "140%",
   },
   body: {
     fontSize: "16px",

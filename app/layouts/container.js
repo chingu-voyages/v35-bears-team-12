@@ -2,7 +2,7 @@
 import React from "react";
 import Head from "next/head";
 import { useToggle } from "../hooks/useToggle";
-import { useMediaQuerySSR } from "../hooks/useMediaQuerySSR";
+import { useMediaQuerySSR } from "../hooks/useMediaQuerySsr";
 import { Box, VStack } from "@chakra-ui/react";
 import { MobileNavMenu, Navbar } from "../components/navbar";
 import { FooterSection } from "../components/sections/footer-section/index";
@@ -10,6 +10,7 @@ import { FooterSection } from "../components/sections/footer-section/index";
 function Container({ children, ...customMeta }) {
   const [isOpen, toggleIsOpen] = useToggle();
   const [isLarge] = useMediaQuerySSR("(min-width: 992px)");
+
   return (
     <Box>
       <Seo {...customMeta} />

@@ -1,16 +1,12 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import queryClient from "../lib/react-query";
-import { dehydrate, useQuery } from "react-query";
-import { ContentWrapper } from "../layouts/content-wrapper";
-import { Container } from "../layouts/container";
-import { Box, Text, Spinner } from "@chakra-ui/react";
 import ProjectCard from "../components/post-card";
-// import { useColorModeSwitcher } from "../hooks/useColorModeSwitcher";
-// import { useUserStore } from "../context/useUserStore";
-// import { useAsync } from "../hooks/useAsync";
-// import { client } from "../utils/api-client";
-// import prisma from "../lib/prisma";
+import { useMediaQuerySSR } from "../hooks/useMediaQuerySsr";
+import { dehydrate, useQuery } from "react-query";
+import { Container } from "../layouts/container";
+import { ContentWrapper } from "../layouts/content-wrapper";
+import { Box, Text, Spinner } from "@chakra-ui/react";
 
 const getHomepageData = async () => {
   const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/`);
@@ -26,6 +22,7 @@ const getMe = async () => {
 
 export default function Home() {
   const { status, data, error } = useQuery("projects", getHomepageData);
+  const [isMobile] = useMediaQuerySSR("(max-width: 620px)");
 
   return (
     <Container title="Home Page | Chingu Board">
@@ -36,7 +33,7 @@ export default function Home() {
         ) : (
           <Box>
             {data.map((p) => (
-              <ProjectCard key={p.id} project={p} />
+              <ProjectCard key={p.id} isMobile={isMobile} project={p} />
             ))}
           </Box>
         )}
