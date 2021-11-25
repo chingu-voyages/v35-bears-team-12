@@ -12,6 +12,7 @@ import { useUserStore } from "../../context/useUserStore";
 import chinguLogo from "../image/chingu-logo-small.png";
 import menuIcon from "../image/Vector.png";
 import Image from "next/image";
+import ChinguLogo from "../../components/image/chingu-logo-small.png";
 
 // test hover menu
 import { HoverDropDown } from "../hover-dropdown";
