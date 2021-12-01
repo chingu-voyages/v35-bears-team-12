@@ -20,7 +20,7 @@ function Navbar({ isOpen, toggleIsOpen }) {
   const context = useUserStore();
 
   const { colorMode, toggleColorMode } = useColorMode();
-  const { colorDark } = useColorModeSwitcher();
+  const { themed } = useColorModeSwitcher();
 
   const logoutHandler = (event) => {
     event.preventDefault();
@@ -34,7 +34,7 @@ function Navbar({ isOpen, toggleIsOpen }) {
   return (
     <Box
       as="nav"
-      p="0.4rem"
+      p="1rem"
       mb={isOpen ? { base: "1rem" } : { base: "2.5rem", lg: ".3rem" }}
     >
       <Flex
@@ -42,14 +42,7 @@ function Navbar({ isOpen, toggleIsOpen }) {
         mb={isOpen ? { base: "1rem" } : { base: "2.5rem", lg: ".3rem" }}
         p="4"
       >
-        <Heading>
-          <Image
-            src={chinguLogo}
-            alt="Chingu Logo"
-            width="175px"
-            height="59.35px"
-          />
-        </Heading>
+        <Image src={chinguLogo} alt="Chingu Logo" width="160px" height="55px" />
 
         <MenuButton toggleIsOpen={toggleIsOpen} />
 
@@ -72,7 +65,7 @@ function Navbar({ isOpen, toggleIsOpen }) {
               <VerticalLink href="/contact" variant="noStyle">
                 Contact Us
               </VerticalLink>
-              <VerticalLink href="init/support" variant="noStyle">
+              <VerticalLink href="/support" variant="noStyle">
                 Support
               </VerticalLink>
             </HoverDropDown>
@@ -113,26 +106,39 @@ function Navbar({ isOpen, toggleIsOpen }) {
         </HStack>
       </Flex>
       {context.session && (
-        <HStack spacing={{ base: "50px", lg: "90px" }} mb="0.1rem" ml="2rem">
+        <VStack
+          mt={10}
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          spacing={{ base: "0.1rem", lg: "0.2rem" }}
+          mb="0.1rem"
+          ml="2rem"
+        >
           <SubMenu />
-        </HStack>
+          <Divider w="260px" bg="neutral.700" />
+        </VStack>
       )}
       <Center p={2}>
         <SearchBar />
         <Button
-          type="auth"
+          aria-label="Add query labels to your search"
+          // variant="primary"
+          type="submit"
+          border="none"
           m={2}
-          p={4}
-          variant="solid"
-          colorScheme="green"
+          h="inherit"
+          variant="primaryThemed"
+          bg="primary.700"
+          color="accent.simpleWhite"
           w="5rem"
           onClick={loginHandler}
-          fontSize={15}
+          // fontSize={13}
+          textTransform="none"
+          letterSpacing="0.5px"
         >
           + Labels
         </Button>
       </Center>
-      <Divider bg="neutral.700" />
     </Box>
   );
 }
@@ -198,7 +204,6 @@ function MenuButton({ toggleIsOpen, ...props }) {
       borderRadius="sm"
       display={{ base: "block", lg: "none" }}
       h="48px"
-      // eslint-disable-next-line react/jsx-no-bind
       onClick={handleClick}
       variant="ghost"
       w="48px"

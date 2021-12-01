@@ -2,19 +2,14 @@
 import React from "react";
 import Head from "next/head";
 import { useToggle } from "../hooks/useToggle";
-import { Button } from "@chakra-ui/button";
+import { useMediaQuerySSR } from "../hooks/useMediaQuerySsr";
 import { Box, VStack } from "@chakra-ui/react";
-// import { MobileNavMenu, Navbar } from "../components/navbar";
 import { MobileNavMenu, Navbar } from "../components/navbar";
 import { FooterSection } from "../components/sections/footer-section/index";
 
-function Container({
-  // customSpacing = { base: '8rem', lg: '10rem' },
-  footerColor,
-  children,
-  ...customMeta
-}) {
+function Container({ children, ...customMeta }) {
   const [isOpen, toggleIsOpen] = useToggle();
+  const [isLarge] = useMediaQuerySSR("(min-width: 992px)");
 
   return (
     <Box>
@@ -27,7 +22,7 @@ function Container({
         <Navbar isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
         <VStack as="main" id="skip" spacing={{ base: "2rem", lg: "6rem" }}>
           {isOpen ? <MobileNavMenu /> : children}
-          <FooterSection customBgColor={footerColor} />
+          <FooterSection isLarge={isLarge} />
         </VStack>
       </Box>
     </Box>

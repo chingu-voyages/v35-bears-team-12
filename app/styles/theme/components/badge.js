@@ -3,7 +3,7 @@ export const Badge = {
   baseStyle: {
     fontWeight: 300,
     textTransform: "uppercase",
-    borderRadius: "sm",
+    borderRadius: "md",
   },
   // Styles for the size variations
   sizes: {

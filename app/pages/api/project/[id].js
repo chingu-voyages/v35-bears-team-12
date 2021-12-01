@@ -1,3 +1,7 @@
+import prisma from "../../../lib/prisma";
+/*
+  Get's a project by id
+*/
 export default async function projectHandler(req, res) {
   const {
     query: { id },

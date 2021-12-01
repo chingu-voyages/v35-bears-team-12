@@ -46,21 +46,20 @@ function SearchBar() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <InputGroup size="md" w={{ base: "45rem", lg: "50rem" }}>
+      <InputGroup size="md" w={{ base: "20rem", md: "40rem" }}>
         <InputLeftElement>
           <IconButton
-            border="none"
-            variant="unstyled"
-            // color={authThemed}
-            // borderRadius="none"
             aria-label="search"
+            borderRadius="4px"
+            variant="unstyled"
             type="submit"
             isLoading={isSubmitting}
             icon={<SearchIcon />}
           />
         </InputLeftElement>
         <Input
-          borderRadius="none"
+          bg="accent.simpleWhite"
+          borderRadius="4px"
           placeholder="Search"
           type="text"
           {...register("search", {
