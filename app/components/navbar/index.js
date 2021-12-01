@@ -72,9 +72,6 @@ function Navbar({ isOpen, toggleIsOpen }) {
               <VerticalLink href="/contact" variant="noStyle">
                 Contact Us
               </VerticalLink>
-              <VerticalLink href="init/support" variant="noStyle">
-                Support
-              </VerticalLink>
             </HoverDropDown>
             {/* Display Log In / Log Out based on authentication */}
             {context.session ? (
