@@ -8,7 +8,7 @@ function useColorModeSwitcher() {
   const colorLight = useColorModeValue("default.light", "default.dark");
   const colorDark = useColorModeValue("default.dark", "default.light");
 
-  const themed = useColorModeValue("primary.700", "secondary.500");
+  const themed = useColorModeValue("primary.500", "secondary.500");
   const secondaryThemed = useColorModeValue("secondary.700", "secondary.500");
   const authThemed = useColorModeValue("primary.500", "primary.200");
 
